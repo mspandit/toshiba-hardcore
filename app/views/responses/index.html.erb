@@ -1,0 +1,45 @@
+<h1>Listing responses</h1>
+
+<table>
+  <tr>
+    <th>Online</th>
+    <th>Watch</th>
+    <th>Edit movies</th>
+    <th>Download</th>
+    <th>Print</th>
+    <th>Edit photos</th>
+    <th>Stream</th>
+    <th>Digital</th>
+    <th>Record</th>
+    <th>Scrabble</th>
+    <th>Rpg</th>
+    <th>Shooters</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @responses.each do |response| %>
+  <tr>
+    <td><%= response.online %></td>
+    <td><%= response.watch %></td>
+    <td><%= response.edit_movies %></td>
+    <td><%= response.download %></td>
+    <td><%= response.print %></td>
+    <td><%= response.edit_photos %></td>
+    <td><%= response.stream %></td>
+    <td><%= response.digital %></td>
+    <td><%= response.record %></td>
+    <td><%= response.scrabble %></td>
+    <td><%= response.rpg %></td>
+    <td><%= response.shooters %></td>
+    <td><%= link_to 'Show', response %></td>
+    <td><%= link_to 'Edit', edit_response_path(response) %></td>
+    <td><%= link_to 'Destroy', response, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Response', new_response_path %>

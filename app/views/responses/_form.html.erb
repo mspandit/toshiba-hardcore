@@ -1,0 +1,65 @@
+<%= form_for(@response) do |f| %>
+  <% if @response.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@response.errors.count, "error") %> prohibited this response from being saved:</h2>
+
+      <ul>
+      <% @response.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :online %><br />
+    <%= f.number_field :online %>
+  </div>
+  <div class="field">
+    <%= f.label :watch %><br />
+    <%= f.number_field :watch %>
+  </div>
+  <div class="field">
+    <%= f.label :edit_movies %><br />
+    <%= f.number_field :edit_movies %>
+  </div>
+  <div class="field">
+    <%= f.label :download %><br />
+    <%= f.number_field :download %>
+  </div>
+  <div class="field">
+    <%= f.label :print %><br />
+    <%= f.number_field :print %>
+  </div>
+  <div class="field">
+    <%= f.label :edit_photos %><br />
+    <%= f.number_field :edit_photos %>
+  </div>
+  <div class="field">
+    <%= f.label :stream %><br />
+    <%= f.number_field :stream %>
+  </div>
+  <div class="field">
+    <%= f.label :digital %><br />
+    <%= f.number_field :digital %>
+  </div>
+  <div class="field">
+    <%= f.label :record %><br />
+    <%= f.number_field :record %>
+  </div>
+  <div class="field">
+    <%= f.label :scrabble %><br />
+    <%= f.number_field :scrabble %>
+  </div>
+  <div class="field">
+    <%= f.label :rpg %><br />
+    <%= f.number_field :rpg %>
+  </div>
+  <div class="field">
+    <%= f.label :shooters %><br />
+    <%= f.number_field :shooters %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

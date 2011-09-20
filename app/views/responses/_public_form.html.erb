@@ -1,0 +1,78 @@
+<%= form_for(@response) do |f| %>
+  <% if @response.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@response.errors.count, "error") %> prohibited this response from being saved:</h2>
+
+      <ul>
+      <% @response.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field primary">
+    <%= f.label :online %><br />
+    <%= f.check_box :online %>
+	  <div class="field secondary">
+	    <%= f.label :watch %><br />
+	    <%= f.check_box :watch %>
+	  </div>
+  </div>
+  <div class="field primary">
+    <%= f.label :edit_movies %><br />
+    <%= f.check_box :edit_movies %>
+	  <div class="field secondary">
+	    <%= f.label :download %><br />
+	    <%= f.check_box :download %>
+	  </div>
+  </div>
+  <div class="field primary">
+    <%= f.label :print %><br />
+    <%= f.check_box :print %>
+	  <div class="field secondary">
+	    <%= f.label :edit_photos %><br />
+	    <%= f.check_box :edit_photos %>
+	  </div>
+  </div>
+  <div class="field primary">
+    <%= f.label :stream %><br />
+    <%= f.check_box :stream %>
+	  <div class="field secondary">
+	    <%= f.label :digital %><br />
+	    <%= f.check_box :digital %>
+	  </div>
+  </div>
+  <div class="field primary">
+    <%= f.label :record %><br />
+    <%= f.check_box :record %>
+	  <div class="field secondary">
+	    <%= f.label :scrabble %><br />
+	    <%= f.check_box :scrabble %>
+	  </div>
+  </div>
+  <div class="field primary">
+    <%= f.label :rpg %><br />
+    <%= f.check_box :rpg %>
+	  <div class="field secondary">
+	    <%= f.label :shooters %><br />
+	    <%= f.check_box :shooters %>
+	  </div>
+  </div>
+<% end %>
+<div id="results">
+</div>
+<script type="text/javascript" charset="utf-8">
+	$('.primary input[type=checkbox]').bind('change', function () {
+		var name = $(this).parent().find("div.secondary").toggle();
+	});
+	$('input[type=checkbox]').bind('change', function () {
+		$.ajax("/responses/ajax_create", {
+			data: $('form').serialize(),
+			type: "POST",
+			success: function (data) {
+				$("#results").html(data);
+			}
+		})
+	});
+</script>
