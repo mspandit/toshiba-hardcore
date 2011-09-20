@@ -37,3 +37,7 @@ group :test, :development do
   gem "factory_girl"
   gem "guard"
 end
+
+group :production do
+  gem "pg"
+end
