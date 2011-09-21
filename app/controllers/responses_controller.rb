@@ -48,7 +48,8 @@ class ResponsesController < ApplicationController
   # POST /responses/ajax_create
   def ajax_create
     @response = Response.new(params[:response])
-    
+    @recommended = Item.all[rand(26)]
+    @hardcore = Item.all[rand(26)]
     respond_to do |format|
       if @response.save
         format.html { render :partial => "results" }

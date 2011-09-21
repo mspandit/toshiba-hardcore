@@ -11,7 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110914223717) do
+ActiveRecord::Schema.define(:version => 20110921171047) do
+
+  create_table "items", :force => true do |t|
+    t.integer  "speed"
+    t.integer  "price"
+    t.integer  "memory"
+    t.integer  "hard"
+    t.integer  "optical"
+    t.string   "name"
+    t.string   "description"
+    t.string   "product_url"
+    t.string   "image_url"
+    t.float    "import_price"
+    t.string   "import_proc_type"
+    t.string   "import_proc_speed"
+    t.string   "import_proc_number"
+    t.string   "import_memory"
+    t.string   "import_graphics"
+    t.string   "import_hard"
+    t.string   "import_optical"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "responses", :force => true do |t|
     t.integer  "online"

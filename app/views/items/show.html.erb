@@ -1,0 +1,90 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Speed:</b>
+  <%= @item.speed %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @item.price %>
+</p>
+
+<p>
+  <b>Memory:</b>
+  <%= @item.memory %>
+</p>
+
+<p>
+  <b>Hard:</b>
+  <%= @item.hard %>
+</p>
+
+<p>
+  <b>Optical:</b>
+  <%= @item.optical %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @item.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @item.description %>
+</p>
+
+<p>
+  <b>Product url:</b>
+  <%= @item.product_url %>
+</p>
+
+<p>
+  <b>Image url:</b>
+  <%= @item.image_url %>
+</p>
+
+<p>
+  <b>Import price:</b>
+  <%= @item.import_price %>
+</p>
+
+<p>
+  <b>Import proc type:</b>
+  <%= @item.import_proc_type %>
+</p>
+
+<p>
+  <b>Import proc speed:</b>
+  <%= @item.import_proc_speed %>
+</p>
+
+<p>
+  <b>Import proc number:</b>
+  <%= @item.import_proc_number %>
+</p>
+
+<p>
+  <b>Import memory:</b>
+  <%= @item.import_memory %>
+</p>
+
+<p>
+  <b>Import graphics:</b>
+  <%= @item.import_graphics %>
+</p>
+
+<p>
+  <b>Import hard:</b>
+  <%= @item.import_hard %>
+</p>
+
+<p>
+  <b>Import optical:</b>
+  <%= @item.import_optical %>
+</p>
+
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>

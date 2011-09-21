@@ -1,0 +1,55 @@
+<h1>Listing items</h1>
+
+<table>
+  <tr>
+    <th>Speed</th>
+    <th>Price</th>
+    <th>Memory</th>
+    <th>Hard</th>
+    <th>Optical</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Product url</th>
+    <th>Image</th>
+    <th>Import price</th>
+    <th>Import proc type</th>
+    <th>Import proc speed</th>
+    <th>Import proc number</th>
+    <th>Import memory</th>
+    <th>Import graphics</th>
+    <th>Import hard</th>
+    <th>Import optical</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @items.each do |item| %>
+  <tr>
+    <td><%= item.speed %></td>
+    <td><%= item.price %></td>
+    <td><%= item.memory %></td>
+    <td><%= item.hard %></td>
+    <td><%= item.optical %></td>
+    <td><%= item.name %></td>
+    <td><%= item.description %></td>
+    <td><%= item.product_url %></td>
+    <td><%= image_tag(item.image_url) unless item.image_url.blank? %></td>
+    <td><%= item.import_price %></td>
+    <td><%= item.import_proc_type %></td>
+    <td><%= item.import_proc_speed %></td>
+    <td><%= item.import_proc_number %></td>
+    <td><%= item.import_memory %></td>
+    <td><%= item.import_graphics %></td>
+    <td><%= item.import_hard %></td>
+    <td><%= item.import_optical %></td>
+    <td><%= link_to 'Show', item %></td>
+    <td><%= link_to 'Edit', edit_item_path(item) %></td>
+    <td><%= link_to 'Destroy', item, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Item', new_item_path %>

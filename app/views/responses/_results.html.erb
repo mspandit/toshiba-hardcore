@@ -1,6 +1,12 @@
 <div class="suggested">
 	<h1>Suggested Option</h1>
+	<%= @recommended.name %>
+	<%= link_to(image_tag(@recommended.image_url), @recommended.product_url) %>
+	<%= @recommended.description %>
 </div>
 <div class="hardcore">
 	<h1>Hardcore Upgrade</h1>
+	<%= @hardcore.name %>
+	<%= link_to(image_tag(@hardcore.image_url), @hardcore.product_url) %>
+	<%= @hardcore.description %>
 </div>

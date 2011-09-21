@@ -1,4 +1,8 @@
 Hardcore::Application.routes.draw do
+  match 'items/upload' => 'items#upload'
+  match 'items/import' => 'items#import'
+  resources :items
+
   match 'responses/ajax_create' => 'responses#ajax_create'
   resources :responses
 
