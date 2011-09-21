@@ -51,9 +51,9 @@ class ResponsesController < ApplicationController
     
     respond_to do |format|
       if @response.save
-        format.html { render :text => "SUCCESS with #{params.inspect}" }
+        format.html { render :partial => "results" }
       else
-        format.html { render :text => "FAILURE" }
+        format.html { render :partial => "results" }
       end
     end
   end

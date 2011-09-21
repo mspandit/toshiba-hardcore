@@ -1,0 +1,52 @@
+.main {
+	width: 960px;
+	margin: auto;
+	border: 1px solid black;
+	.left {
+		float: left;
+		width: 475px;
+		border: 1px solid black;
+		.thermometer-container {
+			float: left;
+			width: 40px;
+			height: 960px;
+			border: 1px solid black;
+		}
+		.middle {
+			float: left;
+			width: 200px;
+			height: 960px;
+			border: 1px solid black;
+			.field {
+				width: 195px;
+				border: 1px solid black;
+			}
+		}
+		.right {
+			float: left;
+			width: 200px;
+			height: 960px;
+			border: 1px solid black;
+		}
+	}
+	.right {
+		float: left;
+		width: 475px;
+		border: 1px solid black;
+	}
+}
+#results {
+	.suggested {
+		float: left;
+		width: 150px;
+		border: 1px solid black;
+	}
+	.hardcore {
+		float: left;
+		width: 280px;
+		border: 1px solid black;
+	}
+}
+.primary-selected {
+	background-color: gray;
+}

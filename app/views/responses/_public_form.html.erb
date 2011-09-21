@@ -1,78 +1,143 @@
 <%= form_for(@response) do |f| %>
-  <% if @response.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@response.errors.count, "error") %> prohibited this response from being saved:</h2>
+<% if @response.errors.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(@response.errors.count, "error") %> prohibited this response from being saved:</h2>
 
-      <ul>
-      <% @response.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field primary">
-    <%= f.label :online %><br />
-    <%= f.check_box :online %>
-	  <div class="field secondary">
-	    <%= f.label :watch %><br />
-	    <%= f.check_box :watch %>
-	  </div>
-  </div>
-  <div class="field primary">
-    <%= f.label :edit_movies %><br />
-    <%= f.check_box :edit_movies %>
-	  <div class="field secondary">
-	    <%= f.label :download %><br />
-	    <%= f.check_box :download %>
-	  </div>
-  </div>
-  <div class="field primary">
-    <%= f.label :print %><br />
-    <%= f.check_box :print %>
-	  <div class="field secondary">
-	    <%= f.label :edit_photos %><br />
-	    <%= f.check_box :edit_photos %>
-	  </div>
-  </div>
-  <div class="field primary">
-    <%= f.label :stream %><br />
-    <%= f.check_box :stream %>
-	  <div class="field secondary">
-	    <%= f.label :digital %><br />
-	    <%= f.check_box :digital %>
-	  </div>
-  </div>
-  <div class="field primary">
-    <%= f.label :record %><br />
-    <%= f.check_box :record %>
-	  <div class="field secondary">
-	    <%= f.label :scrabble %><br />
-	    <%= f.check_box :scrabble %>
-	  </div>
-  </div>
-  <div class="field primary">
-    <%= f.label :rpg %><br />
-    <%= f.check_box :rpg %>
-	  <div class="field secondary">
-	    <%= f.label :shooters %><br />
-	    <%= f.check_box :shooters %>
-	  </div>
-  </div>
-<% end %>
-<div id="results">
+	<ul>
+		<% @response.errors.full_messages.each do |msg| %>
+		<li><%= msg %></li>
+		<% end %>
+	</ul>
 </div>
+<% end %>
+
+<div class="thermometer-container">
+
+</div>
+<div class="middle">
+	<h1>What's Your Passion?</h1>
+
+	<h2>Video?</h2>
+	<div class="field primary">
+		<%= f.check_box :online %>
+		<%= f.label :online, raw("Online videos &amp; chat") %>
+	</div>
+	<div class="field primary">
+		<%= f.check_box :watch %>
+		<%= f.label :watch, raw("Watch movies &amp; TV") %>
+	</div>
+	<div class="field primary">
+		<%= f.check_box :edit_movies %>
+		<%= f.label :edit_movies, raw("Edit home movies") %>
+	</div>
+
+	<h2>Photos?</h2>
+	<div class="field primary">
+		<%= f.check_box :download %>
+		<%= f.label :download, raw("Download from my camera") %>
+	</div>
+	<div class="field primary">
+		<%= f.check_box :print %>
+		<%= f.label :print, raw("Print on my computer") %>
+	</div>
+	<div class="field primary">
+		<%= f.check_box :edit_photos %>
+		<%= f.label :edit_photos, raw("Edit &amp; touch up photos") %>
+	</div>
+
+	<h2>Music?</h2>
+	<div class="field primary">
+		<%= f.check_box :stream %>
+		<%= f.label :stream, raw("Streaming radio") %>
+	</div>
+	<div class="field primary">
+		<%= f.check_box :digital %>
+		<%= f.label :digital, raw("Digital music collection") %>
+	</div>
+	<div class="field primary">
+		<%= f.check_box :record %>
+		<%= f.label :record, raw("Record &amp; edit") %>
+	</div>
+
+	<h2>Games?</h2>
+	<div class="field primary">
+		<%= f.check_box :scrabble %>
+		<%= f.label :scrabble, raw("Scrabble with my mom") %>
+	</div>
+	<div class="field primary">
+		<%= f.check_box :rpg %>
+		<%= f.label :rpg, raw("RPG with my guild") %>
+	</div>
+	<div class="field primary">
+		<%= f.check_box :shooters %>
+		<%= f.label :shooters, raw("All the latest shooters") %>
+	</div>
+</div>
+<div class="right">
+	<h1>Are You Hardcore?</h1>
+	<div class="field secondary">
+		<%= f.check_box :online2, :href => "response_online" %>
+		<%= f.label :online2, raw("I'm a cat video junkie") %>
+	</div>
+	<div class="field secondary">
+		<%= f.check_box :watch2, :href => "response_watch" %>
+		<%= f.label :watch2, raw("HARDCORE") %>
+	</div>
+	<div class="field secondary">
+		<%= f.check_box :edit_movies2, :href => "response_edit_movies" %>
+		<%= f.label :edit_movies2, raw("HARDCORE") %>
+	</div>
+	<div class="field secondary">
+		<%= f.check_box :download2, :href => "response_download" %>
+		<%= f.label :download2, raw("I take pictures of everything") %>
+	</div>
+	<div class="field secondary">
+		<%= f.check_box :print2, :href => "response_print" %>
+		<%= f.label :print2, raw("I've got albums full") %>
+	</div>
+	<div class="field secondary">
+		<%= f.check_box :edit_photos2, :href => "response_edit_photos" %>
+		<%= f.label :edit_photos2, raw("HARDCORE") %>
+	</div>
+	<div class="field secondary">
+		<%= f.check_box :stream2, :href => "response_stream" %>
+		<%= f.label :stream2, raw("I'm always rockin' out") %>
+	</div>
+	<div class="field secondary">
+		<%= f.check_box :digital2, :href => "response_digital" %>
+		<%= f.label :digital2, raw("HARDCORE") %>
+	</div>
+	<div class="field secondary">
+		<%= f.check_box :record2, :href => "response_record" %>
+		<%= f.label :record2, raw("HARDCORE") %>
+	</div>
+	<div class="field secondary">
+		<%= f.check_box :scrabble2, :href => "response_scrabble" %>
+		<%= f.label :scrabble2, raw("Triple word score master") %>
+	</div>
+	<div class="field secondary">
+		<%= f.check_box :rpg2, :href => "response_rpg" %>
+		<%= f.label :rpg2, raw("I never see the sun") %>
+	</div>
+	<div class="field secondary">
+		<%= f.check_box :shooters2, :href => "response_shooters" %>
+		<%= f.label :shooters2, raw("Addicted to adrenaline") %>
+	</div>
+</div>
+<% end %>
 <script type="text/javascript" charset="utf-8">
-	$('.primary input[type=checkbox]').bind('change', function () {
-		var name = $(this).parent().find("div.secondary").toggle();
-	});
-	$('input[type=checkbox]').bind('change', function () {
-		$.ajax("/responses/ajax_create", {
-			data: $('form').serialize(),
-			type: "POST",
-			success: function (data) {
-				$("#results").html(data);
-			}
-		})
-	});
+$('.primary input[type=checkbox]').bind('change', function () {
+	$(this).parent().toggleClass("primary-selected")
+	$("input[href=" + $(this).attr("id") + "]").attr("checked", false);
+	$("input[href=" + $(this).attr("id") + "]").parent().toggleClass("secondary");
+});
+$('input[type=checkbox]').bind('change', function () {
+	$.ajax("/responses/ajax_create", {
+		data: $('form').serialize(),
+		type: "POST",
+		success: function (data) {
+			$("#results").html(data);
+		}
+	})
+});
 </script>
