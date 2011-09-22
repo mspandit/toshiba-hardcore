@@ -14,11 +14,11 @@
 ActiveRecord::Schema.define(:version => 20110921171047) do
 
   create_table "items", :force => true do |t|
-    t.integer  "speed"
-    t.integer  "price"
-    t.integer  "memory"
-    t.integer  "hard"
-    t.integer  "optical"
+    t.float    "speed"
+    t.float    "price"
+    t.float    "memory"
+    t.float    "hard"
+    t.float    "optical"
     t.string   "name"
     t.string   "description"
     t.string   "product_url"

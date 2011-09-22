@@ -75,6 +75,9 @@
 </div>
 <div class="right">
 	<h1>Are You Hardcore?</h1>
+
+	<h2>Video?</h2>
+	
 	<div class="field secondary">
 		<%= f.check_box :online2, :href => "response_online" %>
 		<%= f.label :online2, raw("I'm a cat video junkie") %>
@@ -87,6 +90,9 @@
 		<%= f.check_box :edit_movies2, :href => "response_edit_movies" %>
 		<%= f.label :edit_movies2, raw("HARDCORE") %>
 	</div>
+
+	<h2>Photos?</h2>
+	
 	<div class="field secondary">
 		<%= f.check_box :download2, :href => "response_download" %>
 		<%= f.label :download2, raw("I take pictures of everything") %>
@@ -99,6 +105,9 @@
 		<%= f.check_box :edit_photos2, :href => "response_edit_photos" %>
 		<%= f.label :edit_photos2, raw("HARDCORE") %>
 	</div>
+
+	<h2>Music?</h2>
+	
 	<div class="field secondary">
 		<%= f.check_box :stream2, :href => "response_stream" %>
 		<%= f.label :stream2, raw("I'm always rockin' out") %>
@@ -111,6 +120,9 @@
 		<%= f.check_box :record2, :href => "response_record" %>
 		<%= f.label :record2, raw("HARDCORE") %>
 	</div>
+
+	<h2>Games?</h2>
+
 	<div class="field secondary">
 		<%= f.check_box :scrabble2, :href => "response_scrabble" %>
 		<%= f.label :scrabble2, raw("Triple word score master") %>
@@ -126,12 +138,16 @@
 </div>
 <% end %>
 <script type="text/javascript" charset="utf-8">
+$('input[type=checkbox]').bind('change', function () {
+	$(this).parent().toggleClass("selected")
+});
+
 $('.primary input[type=checkbox]').bind('change', function () {
-	$(this).parent().toggleClass("primary-selected")
 	$("input[href=" + $(this).attr("id") + "]").attr("checked", false);
 	$("input[href=" + $(this).attr("id") + "]").parent().toggleClass("secondary");
 });
 $('input[type=checkbox]').bind('change', function () {
+	$("#results").html("Loading...");
 	$.ajax("/responses/ajax_create", {
 		data: $('form').serialize(),
 		type: "POST",
