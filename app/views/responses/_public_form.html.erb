@@ -20,57 +20,57 @@
 	<h2>Video?</h2>
 	<div class="field primary">
 		<%= f.check_box :online %>
-		<%= f.label :online, raw("Online videos &amp; chat") %>
+		<%= f.label :online, raw("web videos &amp; video chat") %>
 	</div>
 	<div class="field primary">
 		<%= f.check_box :watch %>
-		<%= f.label :watch, raw("Watch movies &amp; TV") %>
+		<%= f.label :watch, raw("movies &amp; TV") %>
 	</div>
 	<div class="field primary">
 		<%= f.check_box :edit_movies %>
-		<%= f.label :edit_movies, raw("Edit home movies") %>
+		<%= f.label :edit_movies, raw("home video editing") %>
 	</div>
 
 	<h2>Photos?</h2>
 	<div class="field primary">
 		<%= f.check_box :download %>
-		<%= f.label :download, raw("Download from my camera") %>
+		<%= f.label :download, raw("easy photo transfers") %>
 	</div>
 	<div class="field primary">
 		<%= f.check_box :print %>
-		<%= f.label :print, raw("Print on my computer") %>
+		<%= f.label :print, raw("stunning photo prints") %>
 	</div>
 	<div class="field primary">
 		<%= f.check_box :edit_photos %>
-		<%= f.label :edit_photos, raw("Edit &amp; touch up photos") %>
+		<%= f.label :edit_photos, raw("photo editing") %>
 	</div>
 
 	<h2>Music?</h2>
 	<div class="field primary">
 		<%= f.check_box :stream %>
-		<%= f.label :stream, raw("Streaming radio") %>
+		<%= f.label :stream, raw("streaming music") %>
 	</div>
 	<div class="field primary">
 		<%= f.check_box :digital %>
-		<%= f.label :digital, raw("Digital music collection") %>
+		<%= f.label :digital, raw("mp3 management") %>
 	</div>
 	<div class="field primary">
 		<%= f.check_box :record %>
-		<%= f.label :record, raw("Record &amp; edit") %>
+		<%= f.label :record, raw("music production") %>
 	</div>
 
 	<h2>Games?</h2>
 	<div class="field primary">
 		<%= f.check_box :scrabble %>
-		<%= f.label :scrabble, raw("Scrabble with my mom") %>
+		<%= f.label :scrabble, raw("solitaire, Scrabble, and such") %>
 	</div>
 	<div class="field primary">
 		<%= f.check_box :rpg %>
-		<%= f.label :rpg, raw("RPG with my guild") %>
+		<%= f.label :rpg, raw("strategy &amp; RPGs") %>
 	</div>
 	<div class="field primary">
 		<%= f.check_box :shooters %>
-		<%= f.label :shooters, raw("All the latest shooters") %>
+		<%= f.label :shooters, raw("first-person shooters &amp; graphics-heavy games") %>
 	</div>
 </div>
 <div class="right">
@@ -80,80 +80,104 @@
 	
 	<div class="field secondary">
 		<%= f.check_box :online2, :href => "response_online" %>
-		<%= f.label :online2, raw("I'm a cat video junkie") %>
+		<%= f.label :online2, raw("I'm famous from the neck up") %>
 	</div>
 	<div class="field secondary">
 		<%= f.check_box :watch2, :href => "response_watch" %>
-		<%= f.label :watch2, raw("HARDCORE") %>
+		<%= f.label :watch2, raw("My eyeballs are widescreen") %>
 	</div>
 	<div class="field secondary">
 		<%= f.check_box :edit_movies2, :href => "response_edit_movies" %>
-		<%= f.label :edit_movies2, raw("HARDCORE") %>
+		<%= f.label :edit_movies2, raw("Won \"Best Shaky Cam\" Oscar") %>
 	</div>
 
 	<h2>Photos?</h2>
 	
 	<div class="field secondary">
 		<%= f.check_box :download2, :href => "response_download" %>
-		<%= f.label :download2, raw("I take pictures of everything") %>
+		<%= f.label :download2, raw("Sync everything but the kitchen sink") %>
 	</div>
 	<div class="field secondary">
 		<%= f.check_box :print2, :href => "response_print" %>
-		<%= f.label :print2, raw("I've got albums full") %>
+		<%= f.label :print2, raw("Call me the prince of prints") %>
 	</div>
 	<div class="field secondary">
 		<%= f.check_box :edit_photos2, :href => "response_edit_photos" %>
-		<%= f.label :edit_photos2, raw("HARDCORE") %>
+		<%= f.label :edit_photos2, raw("Love a digital darkroom") %>
 	</div>
 
 	<h2>Music?</h2>
 	
 	<div class="field secondary">
 		<%= f.check_box :stream2, :href => "response_stream" %>
-		<%= f.label :stream2, raw("I'm always rockin' out") %>
+		<%= f.label :stream2, raw("My crates are in the cloud") %>
 	</div>
 	<div class="field secondary">
 		<%= f.check_box :digital2, :href => "response_digital" %>
-		<%= f.label :digital2, raw("HARDCORE") %>
+		<%= f.label :digital2, raw("My mp3s have liner notes") %>
 	</div>
 	<div class="field secondary">
 		<%= f.check_box :record2, :href => "response_record" %>
-		<%= f.label :record2, raw("HARDCORE") %>
+		<%= f.label :record2, raw("I'd start a drum machine circle") %>
 	</div>
 
 	<h2>Games?</h2>
 
 	<div class="field secondary">
 		<%= f.check_box :scrabble2, :href => "response_scrabble" %>
-		<%= f.label :scrabble2, raw("Triple word score master") %>
+		<%= f.label :scrabble2, raw("I count cards and consonants") %>
 	</div>
 	<div class="field secondary">
 		<%= f.check_box :rpg2, :href => "response_rpg" %>
-		<%= f.label :rpg2, raw("I never see the sun") %>
+		<%= f.label :rpg2, raw("I've been (chess) clubbing") %>
 	</div>
 	<div class="field secondary">
 		<%= f.check_box :shooters2, :href => "response_shooters" %>
-		<%= f.label :shooters2, raw("Addicted to adrenaline") %>
+		<%= f.label :shooters2, raw("Life needs better graphics") %>
 	</div>
 </div>
 <% end %>
 <script type="text/javascript" charset="utf-8">
-$('input[type=checkbox]').bind('change', function () {
-	$(this).parent().toggleClass("selected")
-});
+	function onchange() {
+		$("#results").html("Loading...");
+		$.ajax("/responses/ajax_create", {
+			data: $('form').serialize(),
+			type: "POST",
+			success: function (data) {
+				$("#results").html(data);
+			}
+		})
+	}
 
-$('.primary input[type=checkbox]').bind('change', function () {
-	$("input[href=" + $(this).attr("id") + "]").attr("checked", false);
-	$("input[href=" + $(this).attr("id") + "]").parent().toggleClass("secondary");
-});
-$('input[type=checkbox]').bind('change', function () {
-	$("#results").html("Loading...");
-	$.ajax("/responses/ajax_create", {
-		data: $('form').serialize(),
-		type: "POST",
-		success: function (data) {
-			$("#results").html(data);
+	$('input[type=checkbox]').bind('change', function () {
+		if ($(this).attr("checked") == "checked") {
+			$(this).parent().addClass("selected");
+		} else {
+			$(this).parent().removeClass("selected");
 		}
-	})
-});
+	});
+
+	$('.primary input[type=checkbox]').bind('change', function () {
+		secondary = $("input[href=" + $(this).attr("id") + "]");
+		secondary.attr("checked", false);
+		if ($(this).attr("checked") == "checked") {
+			secondary.parent().removeClass("secondary");
+		} else {
+			secondary.parent().addClass("secondary");
+		}
+	});
+	$('input[type=checkbox]').bind('change', onchange);
+	$(function () {
+		onchange();
+		$.each($('.primary input[type=checkbox]'), function (index, inp) {
+			if ($(inp).attr("checked") == "checked") {
+				$(inp).parent().addClass("selected");
+				secondary = $("input[href=" + $(inp).attr("id") + "]");
+				secondary.parent().removeClass("secondary");
+				if (secondary.attr("checked") == "checked") {
+					secondary.parent().addClass("selected");
+				}
+			}
+		});
+	});
 </script>

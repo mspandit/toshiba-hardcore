@@ -48,14 +48,13 @@ class ResponsesController < ApplicationController
   # POST /responses/ajax_create
   def ajax_create
     @response = Response.new(params[:response])
-    @recommended = Item.rank_all(params[:response])[0]
-    @hardcore = Item.rank_all(params[:response])[1]
-    respond_to do |format|
-      if @response.save
-        format.html { render :partial => "results" }
-      else
-        format.html { render :partial => "results" }
-      end
+    if @response.empty?
+      render :text => ""
+    else
+      @recommended = Item.rank_all(params[:response])[0]
+      @hardcore = Item.rank_all(params[:response])[1]
+      @response.save
+      render :partial => "results"
     end
   end
 
