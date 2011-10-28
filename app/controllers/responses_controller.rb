@@ -48,6 +48,9 @@ class ResponsesController < ApplicationController
   # POST /responses/ajax_create
   def ajax_create
     @response = Response.new(params[:response])
+    
+    # puts "response -> #{@response.inspect}"
+    
     if @response.empty?
       render :text => ""
     else

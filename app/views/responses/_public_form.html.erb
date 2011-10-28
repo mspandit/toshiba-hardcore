@@ -59,19 +59,47 @@
 		<%= f.label :record, raw("music production") %>
 	</div>
 
-	<h2>Games?</h2>
-	<div class="field primary">
-		<%= f.check_box :scrabble %>
-		<%= f.label :scrabble, raw("solitaire, Scrabble, and such") %>
-	</div>
-	<div class="field primary">
-		<%= f.check_box :rpg %>
-		<%= f.label :rpg, raw("strategy &amp; RPGs") %>
-	</div>
-	<div class="field primary">
-		<%= f.check_box :shooters %>
-		<%= f.label :shooters, raw("first-person shooters &amp; graphics-heavy games") %>
-	</div>
+  <h2>Games?</h2>
+  <div class="field primary">
+    <%= f.check_box :scrabble %>
+    <%= f.label :scrabble, raw("solitaire, Scrabble, and such") %>
+  </div>
+  <div class="field primary">
+    <%= f.check_box :rpg %>
+    <%= f.label :rpg, raw("strategy &amp; RPGs") %>
+  </div>
+  <div class="field primary">
+    <%= f.check_box :shooters %>
+    <%= f.label :shooters, raw("first-person shooters &amp; graphics-heavy games") %>
+  </div>
+
+  <h2>Portability?</h2>
+  <div class="field primary">
+    <%= f.check_box :desk_work %>
+    <%= f.label :desk_work, raw("I'm an &copy;Office junkie") %>
+  </div>
+  <div class="field primary">
+    <%= f.check_box :planes_trains %>
+    <%= f.label :planes_trains, raw("These seats are getting smaller, aren't they?") %>
+  </div>
+  <div class="field primary">
+    <%= f.check_box :coffee_shop %>
+    <%= f.label :coffee_shop, raw("Excuse me, I believe I ordered a LARGE cappuccino?") %>
+  </div>
+	
+  <h2>Productivity?</h2>
+  <div class="field primary">
+    <%= f.check_box :desk_work %>
+    <%= f.label :desk_work, raw("I'm an &copy;Office junkie") %>
+  </div>
+  <div class="field primary">
+    <%= f.check_box :rpg %>
+    <%= f.label :rpg, raw("These seats are getting smaller, aren't they?") %>
+  </div>
+  <div class="field primary">
+    <%= f.check_box :shooters %>
+    <%= f.label :shooters, raw("Excuse me, I believe I ordered a LARGE cappuccino?") %>
+  </div>
 </div>
 <div class="right">
 	<h1>Are You Hardcore?</h1>
@@ -121,20 +149,21 @@
 		<%= f.label :record2, raw("I'd start a drum machine circle") %>
 	</div>
 
-	<h2>Games?</h2>
+  <h2>Games?</h2>
 
-	<div class="field secondary">
-		<%= f.check_box :scrabble2, :href => "response_scrabble" %>
-		<%= f.label :scrabble2, raw("I count cards and consonants") %>
-	</div>
-	<div class="field secondary">
-		<%= f.check_box :rpg2, :href => "response_rpg" %>
-		<%= f.label :rpg2, raw("I've been (chess) clubbing") %>
-	</div>
-	<div class="field secondary">
-		<%= f.check_box :shooters2, :href => "response_shooters" %>
-		<%= f.label :shooters2, raw("Life needs better graphics") %>
-	</div>
+  <div class="field secondary">
+    <%= f.check_box :scrabble2, :href => "response_scrabble" %>
+    <%= f.label :scrabble2, raw("I count cards and consonants") %>
+  </div>
+  <div class="field secondary">
+    <%= f.check_box :rpg2, :href => "response_rpg" %>
+    <%= f.label :rpg2, raw("I've been (chess) clubbing") %>
+  </div>
+  <div class="field secondary">
+    <%= f.check_box :shooters2, :href => "response_shooters" %>
+    <%= f.label :shooters2, raw("Life needs better graphics") %>
+  </div>
+	
 </div>
 <% end %>
 <script type="text/javascript" charset="utf-8">

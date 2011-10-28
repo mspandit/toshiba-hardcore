@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20110921171047) do
     t.string   "import_graphics"
     t.string   "import_hard"
     t.string   "import_optical"
+    t.string   "image_url_alt"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

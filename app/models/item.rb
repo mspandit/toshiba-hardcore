@@ -25,7 +25,7 @@ class Item < ActiveRecord::Base
     name: 1,
     description: 2,
     product_url: 3,
-    image_url: 4,
+    image_url: 26,
     import_price: 10,
     import_proc_type: 13,
     import_proc_speed: 14,
@@ -34,6 +34,7 @@ class Item < ActiveRecord::Base
     import_graphics: 20,
     import_hard: 17,
     import_optical: 19
+    # ,image_url_alt: 26
   }
   
   def rank_speed
@@ -68,23 +69,74 @@ class Item < ActiveRecord::Base
   
   def self.rank_all(params)
     weights = { 
-      :speed => params[:edit_movies].to_f + params[:edit_movies2].to_f + params[:stream].to_f + params[:stream2].to_f + params[:rpg].to_f + params[:rpg2].to_f + params[:shooter].to_f + params[:shooter2].to_f, 
-      :memory => params[:online].to_f + params[:online2].to_f + params[:edit_photos].to_f + params[:edit_photos2].to_f + params[:digital].to_f + params[:digital2].to_f + params[:record].to_f + params[:record2].to_f + params[:shooter].to_f + params[:shooter2].to_f, 
-      :hard => params[:watch].to_f + params[:watch2].to_f + params[:edit_movies].to_f + params[:edit_movies2].to_f + params[:download].to_f + params[:download2].to_f + params[:print].to_f + params[:print2].to_f + params[:edit_photos].to_f + params[:edit_photos2].to_f + params[:digital].to_f + params[:digital2].to_f + params[:record].to_f + params[:record2].to_f + params[:rpg].to_f + params[:rpg2].to_f, 
-      :optical => params[:watch].to_f + params[:watch2].to_f, 
-      :price => params[:online].to_f + params[:online2].to_f + params[:download].to_f + params[:download2].to_f + params[:print].to_f + params[:print2].to_f + params[:stream].to_f + params[:stream2].to_f + params[:scrabble].to_f + params[:scrabble2].to_f 
+      :speed => params[:edit_movies].to_f   + 
+                params[:edit_movies2].to_f  + 
+                params[:stream].to_f        +
+                params[:stream2].to_f       +
+                params[:rpg].to_f           +
+                params[:rpg2].to_f          + 
+                params[:shooter].to_f       + 
+                params[:shooter2].to_f,
+                
+      :memory =>params[:online].to_f        +
+                params[:online2].to_f       +
+                params[:edit_photos].to_f   +
+                params[:edit_photos2].to_f  +
+                params[:digital].to_f       +
+                params[:digital2].to_f      +
+                params[:record].to_f        + 
+                params[:record2].to_f       + 
+                params[:shooter].to_f       +
+                params[:shooter2].to_f,
+                
+      :hard =>  params[:watch].to_f         +
+                params[:watch2].to_f        +
+                params[:edit_movies].to_f   +
+                params[:edit_movies2].to_f  +
+                params[:download].to_f      +
+                params[:download2].to_f     +
+                params[:print].to_f         +
+                params[:print2].to_f        +
+                params[:edit_photos].to_f   +
+                params[:edit_photos2].to_f  +
+                params[:digital].to_f       +
+                params[:digital2].to_f      +
+                params[:record].to_f        +
+                params[:record2].to_f       +
+                params[:rpg].to_f           +
+                params[:rpg2].to_f,
+                
+      :optical=>params[:watch].to_f         +
+                params[:watch2].to_f,
+                
+      :price => params[:online].to_f        +
+                params[:online2].to_f       +
+                params[:download].to_f      +
+                params[:download2].to_f     +
+                params[:print].to_f         +
+                params[:print2].to_f        +
+                params[:stream].to_f        +
+                params[:stream2].to_f       +
+                params[:scrabble].to_f      +
+                params[:scrabble2].to_f
     }
     
+    
+    puts "weights:", weights.inspect
     all.map do |item|
-      item.final_score = weights[:speed] * item.speed + weights[:memory] * item.memory + weights[:hard] * item.hard + weights[:optical] * item.optical + weights[:price] * item.price
+      item.final_score =  weights[:speed]   * item.speed    +
+                          weights[:memory]  * item.memory   + 
+                          weights[:hard]    * item.hard     + 
+                          weights[:optical] * item.optical  + 
+                          weights[:price]   * item.price
       item
     end.sort { |i1, i2| i2.final_score <=> i1.final_score }
   end
   
   def self.rank
-    prices = Item.order("import_price DESC").map(&:import_price).uniq
+    prices   = Item.order("import_price DESC").map(&:import_price).uniq
     memories = Item.order("import_memory ASC").map { |i| i.import_memory.split("|").last }.uniq
-    hards = Item.order("import_hard ASC").map { |i| i.import_hard.split("|").last }.uniq
+    hards    = Item.order("import_hard ASC").map { |i| i.import_hard.split("|").last }.uniq
     all.each do |item|
       item.update_attributes({
         :speed => item.rank_speed,
@@ -102,9 +154,15 @@ class Item < ActiveRecord::Base
       columns = line.split("\t")
       if ("Toshiba" == columns[5] && "Notebook PCs" == columns[6] && "New" == columns[11] && columns[13].index("AMD").nil?)
         hash = {}
-        MAP.each_pair do |key, value|
-          hash[key] = columns[value]
+        MAP.each_pair do |key, value| 
+          if 26 == value
+            # grab the original image url if alt is blank
+            hash[key] = columns[value].blank? ? columns[4] : "http://www.toshibadirect.com/#{columns[value].split(',').first}"
+          else
+            hash[key] = columns[value]
+          end
         end
+        # puts "hash:", hash.inspect
         Item.create(hash)
         num_lines += 1
       end

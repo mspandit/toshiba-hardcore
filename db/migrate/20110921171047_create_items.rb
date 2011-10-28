@@ -18,6 +18,7 @@ class CreateItems < ActiveRecord::Migration
       t.string :import_graphics
       t.string :import_hard
       t.string :import_optical
+      t.string :image_url_alt
 
       t.timestamps
     end
