@@ -1,6 +1,6 @@
 .main {
 	width: 960px;
-	height: 960px;
+	height: 1100px;
 	margin: auto;
 	border: 1px solid black;
 	.left {
@@ -10,13 +10,13 @@
 		.thermometer-container {
 			float: left;
 			width: 40px;
-			height: 650px;
+			height: 1000px;
 			border: 1px solid black;
 		}
 		.middle {
 			float: left;
 			width: 200px;
-			height: 650px;
+			height: 1000px;
 			border: 1px solid black;
 			.field {
 				width: 195px;
@@ -29,7 +29,7 @@
 			}
 			float: left;
 			width: 200px;
-			height: 650px;
+			height: 1000px;
 			border: 1px solid black;
 			.field {
 				width: 195px;
