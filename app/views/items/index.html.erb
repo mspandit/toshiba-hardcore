@@ -7,11 +7,13 @@
     <th>Memory</th>
     <th>Hard</th>
     <th>Optical</th>
+    <th>Graphics</th>
+    <th>HDD speed</th>
+    <th>Screen</th>
     <th>Name</th>
     <th>Description</th>
     <th>Product url</th>
     <th>Image</th>
-    <th>Image alt</th>
     <th>Import price</th>
     <th>Import proc type</th>
     <th>Import proc speed</th>
@@ -20,6 +22,8 @@
     <th>Import graphics</th>
     <th>Import hard</th>
     <th>Import optical</th>
+    <th>Import screen</th>
+    <th>Import HDD speed</th>
     <th></th>
     <th></th>
     <th></th>
@@ -32,10 +36,13 @@
     <td><%= item.memory %></td>
     <td><%= item.hard %></td>
     <td><%= item.optical %></td>
+    <td><%= item.graphics %></td>
+    <td><%= item.hdd_speed %></td>
+    <td><%= item.screen %></td>
     <td><%= item.name %></td>
     <td><%= item.description %></td>
     <td><%= item.product_url %></td>
-    <td><%= image_tag(item.image_url) unless item.image_url.blank? %></td>
+    <td><%= image_tag(item.image_url, :width => 100) unless item.image_url.blank? %></td>
     <td><%= item.import_price %></td>
     <td><%= item.import_proc_type %></td>
     <td><%= item.import_proc_speed %></td>
@@ -44,6 +51,8 @@
     <td><%= item.import_graphics %></td>
     <td><%= item.import_hard %></td>
     <td><%= item.import_optical %></td>
+    <td><%= item.import_screen %></td>
+    <td><%= item.import_hdd_speed %></td>
     <td><%= link_to 'Show', item %></td>
     <td><%= link_to 'Edit', edit_item_path(item) %></td>
     <td><%= link_to 'Destroy', item, confirm: 'Are you sure?', method: :delete %></td>

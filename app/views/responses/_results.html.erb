@@ -1,12 +1,12 @@
 <div class="suggested">
 	<h1>Suggested Option</h1>
 	<p><%= @recommended.name %></p>
-	<p><%= link_to(image_tag(@recommended.image_url), @recommended.product_url) %></p>
+	<p><%= link_to(image_tag(@recommended.image_url, :width => 200), @recommended.product_url) %></p>
 	<p><%= @recommended.description %></p>
 </div>
 <div class="hardcore">
 	<h1>Hardcore Upgrade</h1>
 	<p><%= @hardcore.name %></p>
-	<p><%= link_to(image_tag(@hardcore.image_url), @hardcore.product_url) %></p>
+	<p><%= link_to(image_tag(@hardcore.image_url, :width => 250), @hardcore.product_url) %></p>
 	<p><%= @hardcore.description %></p>
 </div>

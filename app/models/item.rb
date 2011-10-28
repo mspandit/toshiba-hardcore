@@ -21,6 +21,16 @@ class Item < ActiveRecord::Base
     "i7-2630QM" # 2.9GHz
   ]
   
+  GRAPHICS_MEMORY_RANKING = [
+    "-250MB",
+    "-1274MB",
+    "-1299MB",
+    "-1459MB",
+    "-1696MB",
+    "1GB",
+    "1.5GB"
+  ]
+  
   MAP = {
     name: 1,
     description: 2,
@@ -33,7 +43,8 @@ class Item < ActiveRecord::Base
     import_memory: 16,
     import_graphics: 20,
     import_hard: 17,
-    import_optical: 19
+    import_optical: 19,
+    import_screen: 28
     # ,image_url_alt: 26
   }
   
@@ -67,28 +78,82 @@ class Item < ActiveRecord::Base
     end
   end
   
+  def rank_graphics
+    index = 0
+    GRAPHICS_MEMORY_RANKING.each do |fragment|
+      index += 1
+      return (index.to_f / GRAPHICS_MEMORY_RANKING.count) if import_graphics.index(fragment)
+    end
+    0.0
+  end
+  
+  def rank_hdd_speed
+    0.0 # TODO Update when HDD speed is in the feed
+  end
+  
+  def rank_screen(screens)
+    if screens.index(import_screen).nil?
+      0.0
+    else
+      (screens.index(import_screen) + 1).to_f / screens.count
+    end
+  end
+  
   def self.rank_all(params)
     weights = { 
-      :speed => params[:edit_movies].to_f   + 
+      :speed => params[:watch].to_f         +
+                params[:watch2].to_f        +
+                params[:edit_movies].to_f   + 
                 params[:edit_movies2].to_f  + 
+                params[:edit_photos].to_f   + 
+                params[:edit_photos2].to_f  + 
                 params[:stream].to_f        +
                 params[:stream2].to_f       +
                 params[:rpg].to_f           +
                 params[:rpg2].to_f          + 
                 params[:shooter].to_f       + 
-                params[:shooter2].to_f,
+                params[:shooter2].to_f      +
+                params[:desk_work].to_f     +
+                params[:desk_work2].to_f    +
+                params[:blogging].to_f      +
+                params[:blogging2].to_f     +
+                params[:architecture].to_f  +
+                params[:architecture2].to_f,
                 
       :memory =>params[:online].to_f        +
                 params[:online2].to_f       +
+                params[:edit_movies].to_f   + 
+                params[:edit_movies2].to_f  + 
                 params[:edit_photos].to_f   +
                 params[:edit_photos2].to_f  +
                 params[:digital].to_f       +
                 params[:digital2].to_f      +
                 params[:record].to_f        + 
                 params[:record2].to_f       + 
+                params[:rpg].to_f           +
+                params[:rpg2].to_f          + 
                 params[:shooter].to_f       +
-                params[:shooter2].to_f,
+                params[:shooter2].to_f      +
+                params[:desk_work].to_f     +
+                params[:desk_work2].to_f    +
+                params[:blogging].to_f      +
+                params[:blogging2].to_f     +
+                params[:architecture].to_f  +
+                params[:architecture2].to_f,
                 
+      :graphics =>  params[:watch].to_f     +
+                params[:watch2].to_f        +
+                params[:edit_movies].to_f   +
+                params[:edit_movies2].to_f  +
+                params[:edit_photos].to_f   +
+                params[:edit_photos2].to_f  +
+                params[:rpg].to_f           +
+                params[:rpg2].to_f          + 
+                params[:shooter].to_f       +
+                params[:shooter2].to_f      +
+                params[:blogging].to_f      +
+                params[:blogging2].to_f,
+                                
       :hard =>  params[:watch].to_f         +
                 params[:watch2].to_f        +
                 params[:edit_movies].to_f   +
@@ -104,10 +169,47 @@ class Item < ActiveRecord::Base
                 params[:record].to_f        +
                 params[:record2].to_f       +
                 params[:rpg].to_f           +
-                params[:rpg2].to_f,
+                params[:rpg2].to_f          +
+                params[:desk_work].to_f     +
+                params[:desk_work2].to_f    +
+                params[:planes_trains].to_f +
+                params[:planes_trains2].to_f +
+                params[:docs].to_f          +
+                params[:docs2].to_f         +
+                params[:blogging].to_f      +
+                params[:blogging2].to_f     +
+                params[:architecture].to_f  +
+                params[:architecture2].to_f,
+                
+      :hdd_speed => params[:watch].to_f         +
+                params[:watch2].to_f        +
+                params[:edit_movies].to_f   +
+                params[:edit_movies2].to_f  +
+                params[:edit_photos].to_f   +
+                params[:edit_photos2].to_f  +
+                params[:digital].to_f       +
+                params[:digital2].to_f      +
+                params[:rpg].to_f           +
+                params[:rpg2].to_f          +
+                params[:shooter].to_f       +
+                params[:shooter2].to_f      +
+                params[:blogging].to_f      +
+                params[:blogging2].to_f     +
+                params[:architecture].to_f  +
+                params[:architecture2].to_f,
                 
       :optical=>params[:watch].to_f         +
-                params[:watch2].to_f,
+                params[:watch2].to_f        +
+                params[:edit_movies].to_f   +
+                params[:edit_movies2].to_f  +
+                params[:shooter].to_f       +
+                params[:shooter2].to_f      +
+                params[:planes_trains].to_f +
+                params[:planes_trains2].to_f +
+                params[:docs].to_f          +
+                params[:docs2].to_f         +
+                params[:blogging].to_f      +
+                params[:blogging2].to_f,
                 
       :price => params[:online].to_f        +
                 params[:online2].to_f       +
@@ -118,7 +220,32 @@ class Item < ActiveRecord::Base
                 params[:stream].to_f        +
                 params[:stream2].to_f       +
                 params[:scrabble].to_f      +
-                params[:scrabble2].to_f
+                params[:scrabble2].to_f     +
+                params[:planes_trains].to_f +
+                params[:planes_trains2].to_f +
+                params[:coffee_shops].to_f  +
+                params[:coffee_shops2].to_f +
+                params[:docs].to_f          +
+                params[:docs2].to_f,
+      
+      :screen => params[:watch].to_f        +
+                params[:watch2].to_f        +
+                params[:edit_movies].to_f   +
+                params[:edit_movies2].to_f  +
+                params[:edit_photos].to_f   +
+                params[:edit_photos2].to_f  +
+                params[:rpg].to_f           +
+                params[:rpg2].to_f          +
+                params[:shooter].to_f       +
+                params[:shooter2].to_f      +
+                params[:docs].to_f          +
+                params[:docs2].to_f         - 
+                params[:planes_trains].to_f -
+                params[:planes_trains2].to_f -
+                params[:coffee_shops].to_f  -
+                params[:coffee_shops2].to_f +
+                params[:blogging].to_f      +
+                params[:blogging2].to_f
     }
     
     
@@ -126,24 +253,31 @@ class Item < ActiveRecord::Base
     all.map do |item|
       item.final_score =  weights[:speed]   * item.speed    +
                           weights[:memory]  * item.memory   + 
+                          weights[:graphics] * item.graphics +
                           weights[:hard]    * item.hard     + 
+                          weights[:hdd_speed] * item.hdd_speed +
                           weights[:optical] * item.optical  + 
-                          weights[:price]   * item.price
+                          weights[:price]   * item.price +
+                          weights[:screen] * item.screen
       item
     end.sort { |i1, i2| i2.final_score <=> i1.final_score }
   end
   
   def self.rank
-    prices   = Item.order("import_price DESC").map(&:import_price).uniq
-    memories = Item.order("import_memory ASC").map { |i| i.import_memory.split("|").last }.uniq
-    hards    = Item.order("import_hard ASC").map { |i| i.import_hard.split("|").last }.uniq
+    prices    = Item.order("import_price DESC").map(&:import_price).uniq
+    memories  = Item.order("import_memory ASC").map { |i| i.import_memory.split("|").last }.uniq
+    hards     = Item.order("import_hard ASC").map { |i| i.import_hard.split("|").last }.uniq
+    screens   = Item.order("screen ASC").map(&:import_screen).uniq
     all.each do |item|
       item.update_attributes({
         :speed => item.rank_speed,
         :price => item.rank_price(prices),
         :memory => item.rank_memory(memories),
         :hard => item.rank_hard(hards),
-        :optical => item.rank_optical
+        :optical => item.rank_optical,
+        :graphics => item.rank_graphics,
+        :hdd_speed => item.rank_hdd_speed,
+        :screen => item.rank_screen(screens)
       })
     end
   end

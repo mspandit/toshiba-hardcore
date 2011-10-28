@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110921171047) do
+ActiveRecord::Schema.define(:version => 20111028212054) do
 
   create_table "items", :force => true do |t|
     t.float    "speed"
@@ -34,6 +34,11 @@ ActiveRecord::Schema.define(:version => 20110921171047) do
     t.string   "image_url_alt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "import_screen"
+    t.string   "import_hdd_speed"
+    t.float    "graphics"
+    t.float    "hdd_speed"
+    t.float    "screen"
   end
 
   create_table "responses", :force => true do |t|
@@ -51,6 +56,12 @@ ActiveRecord::Schema.define(:version => 20110921171047) do
     t.integer  "shooters"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "desk_work"
+    t.integer  "planes_trains"
+    t.integer  "coffee_shops"
+    t.integer  "docs"
+    t.integer  "blogging"
+    t.integer  "architecture"
   end
 
 end
