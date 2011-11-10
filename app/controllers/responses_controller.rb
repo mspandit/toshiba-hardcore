@@ -54,8 +54,8 @@ class ResponsesController < ApplicationController
     if @response.empty?
       render :text => ""
     else
-      @recommended = Item.rank_all(params[:response])[0]
-      @hardcore = Item.rank_all(params[:response])[1]
+      @recommended = Item.rank_all(@response)[0]
+      @hardcore = Item.rank_all(@response)[1]
       @response.save
       render :partial => "results"
     end
