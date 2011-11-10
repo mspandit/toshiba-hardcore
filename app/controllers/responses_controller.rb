@@ -2,7 +2,7 @@ class ResponsesController < ApplicationController
   # GET /responses
   # GET /responses.json
   def index
-    @responses = Response.all
+    @responses = Response.order("created_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -54,8 +54,8 @@ class ResponsesController < ApplicationController
     if @response.empty?
       render :text => ""
     else
-      @recommended = Item.rank_all(@response)[0]
-      @hardcore = Item.rank_all(@response)[1]
+      @hardcore = Item.rank_all(@response)[0]
+      @recommended = Item.rank_all(@response)[1]
       @response.save
       render :partial => "results"
     end
