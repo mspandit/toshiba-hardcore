@@ -52,7 +52,7 @@ class ResponsesController < ApplicationController
     # puts "response -> #{@response.inspect}"
     
     if @response.empty?
-      render :text => ""
+      render :partial => "results_default"
     else
       @hardcore = Item.rank_all(@response)[0]
       @recommended = Item.rank_all(@response)[1]

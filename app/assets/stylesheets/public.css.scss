@@ -1,60 +1,168 @@
-.main {
-	width: 960px;
-	height: 1100px;
-	margin: auto;
-	border: 1px solid black;
-	.left {
-		float: left;
-		width: 475px;
-		border: 1px solid black;
-		.thermometer-container {
-			float: left;
-			width: 40px;
-			height: 1000px;
-			border: 1px solid black;
-		}
-		.middle {
-			float: left;
-			width: 200px;
-			height: 1000px;
-			border: 1px solid black;
-			.field {
-				width: 195px;
-				border: 1px solid black;
-			}
-		}
-		.right {
-			h2 {
-				visibility: hidden;
-			}
-			float: left;
-			width: 200px;
-			height: 1000px;
-			border: 1px solid black;
-			.field {
-				width: 195px;
-				border: 1px solid black;
-			}
-		}
-	}
-	.right {
-		float: left;
-		width: 475px;
-		border: 1px solid black;
+@charset "UTF-8";
+/* CSS Document */
+
+/* Reset */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* Structure */
+
+#container {
+	margin:auto;
+	margin-top:20px;
+	width:1024px;
+	min-height:841px;
+	background-image:url(/assets/center_bg.gif);
+	-moz-box-shadow: 5px 5px 10px #1d1d1d;
+	-webkit-box-shadow: 5px 5px 10px #1d1d1d;
+	box-shadow: 5px 5px 10px #1d1d1d;
+	
+}
+
+#l-div {
+	width:470px;
+	float:left;
+	min-height:841px;
+	
+}
+
+#r-div {
+	width:554px;
+	float:left;
+	min-height:841px;
+	
+}
+
+#tr-div {
+	width:554px;
+	height:236px;
+	float:left;
+	background-image:url(/assets/tr-div_bg.jpg);	
+}
+
+
+#addthis {
+	margin:11px 0 11px 24px;
+}
+
+.mleft24 {
+	margin-left:24px;
+}
+
+/* Look & Feel */
+
+body {
+	background-color:#060607;
+	background-image:url(/assets/body_bg.gif);
+	background-repeat:repeat-y;
+}
+
+
+
+/* Text */
+
+.field_text {
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:10px;
+	color:#000000;
+}
+
+
+
+/* Forms */
+
+#form {
+	background-image:url(/assets/l-div_form_bg.gif);
+}
+
+#form-container {
+	width:444px;
+	height:91px;
+	margin:0 0 0 16px;
+}
+
+#form-container .left {
+	float:left;
+}
+
+#form-container .right {
+	float:right;
+}
+
+#form-left_field {
+	width:195px;
+	height:24px;
+	background-image:url(/assets/l-div_form_left_bg.gif);
+	background-repeat:no-repeat;
+}
+
+#form-left_field .label_and_box {
+	margin:7px 0 0 12px;
+	input[type=checkbox] {
+		width:10px; height:10px; padding:0 0 0 0; margin:0 3px 0 0; vertical-align:text-top;
 	}
 }
-#results {
-	.suggested {
-		float: left;
-		width: 190px;
-		border: 1px solid black;
-	}
-	.hardcore {
-		float: left;
-		width: 280px;
-		border: 1px solid black;
+
+
+#form-right_field {
+	width:207px;
+	height:24px;
+}
+
+#form-right_field .label_and_box {
+	margin:7px 0 0 0;
+	input[type=checkbox] {
+		width: 10px; 
+		height:10px; 
+		padding:0 0 0 0; 
+		margin:0 3px 0 0; 
+		vertical-align:text-top;
 	}
 }
-.selected {
-	background-color: gray;
+
+.suggested, .hardcore {
+	background: white;
 }

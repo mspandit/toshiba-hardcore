@@ -1,11 +1,10 @@
-<div class="main">
-	<div class="left">
-		<p>Make a few choices about how you plan on using your computer, and we'll find the right one for you, plus we'll give you an option to kick it up a notch and go HARDCORE.</p>
-		<%= render 'public_form' %>
-	</div>
-	<div class="right">
-		<h1>Hardcore Message and Visual</h1>
-		<div id="results">
-		</div>
-	</div>
+<div id="container">
+	<div id="l-div">
+		<%= image_tag "tl-div_title.gif", :width => 470, :height => 79 %>
+		<%= image_tag "tl-div_col_titles.gif", :width => 468, :height => 50 %>
+		<%= render :partial => "public_form" %>
+	</div><!-- #l-div -->
+	<div id="r-div">
+		<%= render :partial => 'results_default' %>
+	</div><!-- #r-div -->
 </div>

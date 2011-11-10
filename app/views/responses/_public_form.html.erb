@@ -1,206 +1,376 @@
 <%= form_for(@response) do |f| %>
-<% if @response.errors.any? %>
-<div id="error_explanation">
-	<h2><%= pluralize(@response.errors.count, "error") %> prohibited this response from being saved:</h2>
 
-	<ul>
-		<% @response.errors.full_messages.each do |msg| %>
-		<li><%= msg %></li>
-		<% end %>
-	</ul>
-</div>
-<% end %>
-
-<div class="thermometer-container">
-
-</div>
-<div class="middle">
-	<h1>What's Your Passion?</h1>
-
-	<h2>Video?</h2>
-	<div class="field primary">
-		<%= f.check_box :online %>
-		<%= f.label :online, raw("Web videos &amp; video chat") %>
+<div id="form">
+	<div id="form-container" name="video">
+		<div class="left">
+			<%= image_tag "l-div_form_therm_0-6.gif", :width => 9, :height => 91, :alt => "Thermometer", :class => "therm" %>
+		</div>
+		<%= image_tag "l-div_form_title_video.gif", :width => 191, :height => 19, :alt => "Video" %>
+		<div>
+			<div id="form-left_field" class="left field_text">
+				<div class="label_and_box">
+					<%= f.label :online, raw("Web videos &amp; video chat") %>
+					<div class="right primary">
+						<%= f.check_box :online %>
+					</div>
+				</div>
+			</div><%= image_tag "l-div_form_arrows_on.png", :width => 33, :height => 24, :alt => "Arrows", :class => "left" %>
+			<div id="form-right_field" class="left field_text">
+				<div class="label_and_box">
+					<div class="left secondary">
+						<%= f.check_box :online2, :href => "response_online" %>	<%= f.label :online2, raw("I have 3 YouTube accounts") %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div id="form-left_field" class="left field_text">
+				<div class="label_and_box">
+					<%= f.label :watch, raw("Movies &amp; TV") %>
+					<div class="right primary">
+						<%= f.check_box :watch %>
+					</div>
+				</div>
+			</div><%= image_tag "l-div_form_arrows_on.png", :width => 33, :height => 24, :alt => "Arrows", :class => "left" %>
+			<div id="form-right_field" class="left field_text">
+				<div class="label_and_box">
+					<div class="left secondary">
+						<%= f.check_box :watch2, :href => "response_watch" %>
+						<%= f.label :watch2, raw("I love watching in widescreen") %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div id="form-left_field" class="left field_text">
+				<div class="label_and_box">
+					<%= f.label :edit_movies, raw("Home video editing") %>
+					<div class="right primary">
+						<%= f.check_box :edit_movies %>
+					</div>
+				</div>
+			</div><%= image_tag "l-div_form_arrows_on.png", :width => 33, :height => 24, :alt => "Arrows", :class => "left" %>
+			<div id="form-right_field" class="left field_text">
+				<div class="label_and_box">
+					<div class="left secondary">
+						<%= f.check_box :edit_movies2, :href => "response_edit_movies" %>
+						<%= f.label :edit_movies2, raw("I record everything") %>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div class="field primary">
-		<%= f.check_box :watch %>
-		<%= f.label :watch, raw("Movies &amp; TV") %>
-	</div>
-	<div class="field primary">
-		<%= f.check_box :edit_movies %>
-		<%= f.label :edit_movies, raw("Home video editing") %>
-	</div>
-
-	<h2>Photos?</h2>
-	<div class="field primary">
-		<%= f.check_box :download %>
-		<%= f.label :download, raw("Easy photo transfers") %>
-	</div>
-	<div class="field primary">
-		<%= f.check_box :print %>
-		<%= f.label :print, raw("Stunning photo prints") %>
-	</div>
-	<div class="field primary">
-		<%= f.check_box :edit_photos %>
-		<%= f.label :edit_photos, raw("Photo editing") %>
-	</div>
-
-	<h2>Music?</h2>
-	<div class="field primary">
-		<%= f.check_box :stream %>
-		<%= f.label :stream, raw("Streaming internet radio/music") %>
-	</div>
-	<div class="field primary">
-		<%= f.check_box :digital %>
-		<%= f.label :digital, raw("MP3 management") %>
-	</div>
-	<div class="field primary">
-		<%= f.check_box :record %>
-		<%= f.label :record, raw("Music production") %>
-	</div>
-
-  <h2>Games?</h2>
-  <div class="field primary">
-    <%= f.check_box :scrabble %>
-    <%= f.label :scrabble, raw("Words With Friends and such") %>
-  </div>
-  <div class="field primary">
-    <%= f.check_box :rpg %>
-    <%= f.label :rpg, raw("Strategy &amp; role-play games") %>
-  </div>
-  <div class="field primary">
-    <%= f.check_box :shooters %>
-    <%= f.label :shooters, raw("Graphics-heavy games") %>
-  </div>
-
-  <h2>Portability?</h2>
-  <div class="field primary">
-    <%= f.check_box :desk_work %>
-    <%= f.label :desk_work, raw("Desk work") %>
-  </div>
-  <div class="field primary">
-    <%= f.check_box :planes_trains %>
-    <%= f.label :planes_trains, raw("Planes, trains &amp; automobiles") %>
-  </div>
-  <div class="field primary">
-    <%= f.check_box :coffee_shops %>
-    <%= f.label :coffee_shops, raw("Coffee shops &amp; parks") %>
-  </div>
-	
-  <h2>Productivity?</h2>
-  <div class="field primary">
-    <%= f.check_box :docs %>
-    <%= f.label :docs, raw("Docs, spreadsheets & ppts") %>
-  </div>
-  <div class="field primary">
-    <%= f.check_box :blogging %>
-    <%= f.label :blogging, raw("Blogging &amp; tweeting") %>
-  </div>
-  <div class="field primary">
-    <%= f.check_box :architecture %>
-    <%= f.label :architecture, raw("Architecture &amp; CAD") %>
-  </div>
-</div>
-<div class="right">
-	<h1>Are You Hardcore?</h1>
-
-	<h2>Video?</h2>
-	
-	<div class="field secondary">
-		<%= f.check_box :online2, :href => "response_online" %>
-		<%= f.label :online2, raw("I have 3 YouTube accounts") %>
-	</div>
-	<div class="field secondary">
-		<%= f.check_box :watch2, :href => "response_watch" %>
-		<%= f.label :watch2, raw("I love watching in widescreen") %>
-	</div>
-	<div class="field secondary">
-		<%= f.check_box :edit_movies2, :href => "response_edit_movies" %>
-		<%= f.label :edit_movies2, raw("I record everything") %>
-	</div>
-
-	<h2>Photos?</h2>
-	
-	<div class="field secondary">
-		<%= f.check_box :download2, :href => "response_download" %>
-		<%= f.label :download2, raw("I store all of our photos") %>
-	</div>
-	<div class="field secondary">
-		<%= f.check_box :print2, :href => "response_print" %>
-		<%= f.label :print2, raw("I'm always looking for the best shot") %>
-	</div>
-	<div class="field secondary">
-		<%= f.check_box :edit_photos2, :href => "response_edit_photos" %>
-		<%= f.label :edit_photos2, raw("I touch up everything") %>
-	</div>
-
-	<h2>Music?</h2>
-	
-	<div class="field secondary">
-		<%= f.check_box :stream2, :href => "response_stream" %>
-		<%= f.label :stream2, raw("I only listen to my music online") %>
-	</div>
-	<div class="field secondary">
-		<%= f.check_box :digital2, :href => "response_digital" %>
-		<%= f.label :digital2, raw("I have hundreds of MP3s to store") %>
-	</div>
-	<div class="field secondary">
-		<%= f.check_box :record2, :href => "response_record" %>
-		<%= f.label :record2, raw("My band is making a demo") %>
-	</div>
-
-  <h2>Games?</h2>
-
-  <div class="field secondary">
-    <%= f.check_box :scrabble2, :href => "response_scrabble" %>
-    <%= f.label :scrabble2, raw("I play to win 24/7") %>
-  </div>
-  <div class="field secondary">
-    <%= f.check_box :rpg2, :href => "response_rpg" %>
-    <%= f.label :rpg2, raw("I have 12 different personas") %>
-  </div>
-  <div class="field secondary">
-    <%= f.check_box :shooters2, :href => "response_shooters" %>
-    <%= f.label :shooters2, raw("The more realistic the better") %>
-  </div>
-
-  <h2>Portability?</h2>
-  <div class="field secondary">
-    <%= f.check_box :desk_work2, :href => "response_desk_work" %>
-    <%= f.label :desk_work2, raw("I never leave my desk") %>
-  </div>
-  <div class="field secondary">
-    <%= f.check_box :planes_trains2, :href => "response_planes_trains" %>
-    <%= f.label :planes_trains2, raw("I travel everywhere with my laptop") %>
-  </div>
-  <div class="field secondary">
-    <%= f.check_box :coffee_shops2, :href => "response_coffee_shops" %>
-    <%= f.label :coffee_shops2, raw("Starbucks is my second home") %>
-  </div>
-	
-  <h2>Productivity?</h2>
-  <div class="field secondary">
-    <%= f.check_box :docs2, :href => "response_docs" %>
-    <%= f.label :docs2, raw("My Excel runs math simulations") %>
-  </div>
-  <div class="field secondary">
-    <%= f.check_box :blogging2, :href => "response_blogging" %>
-    <%= f.label :blogging2, raw("I have a blog for each of my hobbies") %>
-  </div>
-  <div class="field secondary">
-    <%= f.check_box :architecture2, :href => "response_architecture" %>
-    <%= f.label :architecture2, raw("Fly-throughs and renders galore") %>
-  </div>	
+	<%= image_tag "l-div_divider_lines.png", :width => 466, :height => 19 %>
+	<div id="form-container" name="video">
+		<div class="left">
+			<%= image_tag "l-div_form_therm_0-6.gif", :width => 9, :height => 91, :alt => "Thermometer", :class => "therm" %>
+		</div>
+		<%= image_tag "l-div_form_title_photos.gif", :width => 191, :height => 19, :alt => "Video" %>
+		<div>
+			<div id="form-left_field" class="left field_text">
+				<div class="label_and_box">
+					<%= f.label :download, raw("Easy photo transfers") %>
+					<div class="right primary">
+						<%= f.check_box :download %>
+					</div>
+				</div>
+			</div><%= image_tag "l-div_form_arrows_on.png", :width => 33, :height => 24, :alt => "Arrows", :class => "left" %>
+			<div id="form-right_field" class="left field_text">
+				<div class="label_and_box">
+					<div class="left secondary">
+						<%= f.check_box :download2, :href => "response_download" %>
+						<%= f.label :download2, raw("I store all of our photos") %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div id="form-left_field" class="left field_text">
+				<div class="label_and_box">
+					<%= f.label :print, raw("Stunning photo prints") %>
+					<div class="right primary">
+						<%= f.check_box :print %>
+					</div>
+				</div>
+			</div><%= image_tag "l-div_form_arrows_on.png", :width => 33, :height => 24, :alt => "Arrows", :class => "left" %>
+			<div id="form-right_field" class="left field_text">
+				<div class="label_and_box">
+					<div class="left secondary">
+						<%= f.check_box :print2, :href => "response_print" %>
+						<%= f.label :print2, raw("I'm always looking for the best shot") %>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<div>
+			<div id="form-left_field" class="left field_text">
+				<div class="label_and_box">
+					<%= f.label :edit_photos, raw("Photo editing") %>
+					<div class="right primary">
+						<%= f.check_box :edit_photos %>
+					</div>
+				</div>
+			</div><%= image_tag "l-div_form_arrows_on.png", :width => 33, :height => 24, :alt => "Arrows", :class => "left" %>
+			<div id="form-right_field" class="left field_text">
+				<div class="label_and_box">
+					<div class="left secondary">
+						<%= f.check_box :edit_photos2, :href => "response_edit_photos" %>
+						<%= f.label :edit_photos2, raw("I touch up everything") %>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div><%= image_tag "l-div_divider_lines.png", :width => 466, :height => 19 %>
+	<div id="form-container" name="video">
+		<div class="left">
+			<%= image_tag "l-div_form_therm_0-6.gif", :width => 9, :height => 91, :alt => "Thermometer", :class => "therm" %>
+		</div>
+		<%= image_tag "l-div_form_title_music.gif", :width => 191, :height => 19 %>
+		<div>
+			<div id="form-left_field" class="left field_text">
+				<div class="label_and_box">
+					<%= f.label :stream, raw("Streaming internet radio/music") %>
+					<div class="right primary">
+						<%= f.check_box :stream %>
+					</div>
+				</div>
+			</div><%= image_tag "l-div_form_arrows_on.png", :width => 33, :height => 24, :alt => "Arrows", :class => "left" %>
+			<div id="form-right_field" class="left field_text">
+				<div class="label_and_box">
+					<div class="left secondary">
+						<%= f.check_box :stream2, :href => "response_stream" %>
+						<%= f.label :stream2, raw("I only listen to my music online") %>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<div>
+			<div id="form-left_field" class="left field_text">
+				<div class="label_and_box">
+					<%= f.label :digital, raw("MP3 management") %>
+					<div class="right primary">
+						<%= f.check_box :digital %>
+					</div>
+				</div>
+			</div><%= image_tag "l-div_form_arrows_on.png", :width => 33, :height => 24, :alt => "Arrows", :class => "left" %>
+			<div id="form-right_field" class="left field_text">
+				<div class="label_and_box">
+					<div class="left secondary">
+						<%= f.check_box :digital2, :href => "response_digital" %>
+						<%= f.label :digital2, raw("I have thousands of MP3s to store") %>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<div>
+			<div id="form-left_field" class="left field_text">
+				<div class="label_and_box">
+					<%= f.label :record, raw("Music production") %>
+					<div class="right primary">
+						<%= f.check_box :record %>
+					</div>
+				</div>
+			</div><%= image_tag "l-div_form_arrows_on.png", :width => 33, :height => 24, :alt => "Arrows", :class => "left" %>
+			<div id="form-right_field" class="left field_text">
+				<div class="label_and_box">
+					<div class="left secondary">
+						<%= f.check_box :record2, :href => "response_record" %>
+						<%= f.label :record2, raw("My band is making a demo") %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><%= image_tag "l-div_divider_lines.png", :width => 466, :height => 19 %>
+	<div id="form-container" name="video">
+		<div class="left">
+			<%= image_tag "l-div_form_therm_0-6.gif", :width => 9, :height => 91, :alt => "Thermometer", :class => "therm" %>
+		</div>
+		<%= image_tag "l-div_form_title_games.gif", :width => 191, :height => 19, :alt => "Games" %>
+		<div>
+			<div id="form-left_field" class="left field_text">
+				<div class="label_and_box">
+				    <%= f.label :scrabble, raw("Puzzles, word games and such") %>
+					<div class="right primary">
+					    <%= f.check_box :scrabble %>
+					</div>
+				</div>
+			</div><%= image_tag "l-div_form_arrows_on.png", :width => 33, :height => 24, :alt => "Arrows", :class => "left" %>
+			<div id="form-right_field" class="left field_text">
+				<div class="label_and_box">
+					<div class="left secondary">
+					    <%= f.check_box :scrabble2, :href => "response_scrabble" %>
+						<%= f.label :scrabble2, raw("I play to win 24/7") %>
+					</div>    
+				</div>
+			</div>
+		</div>
+		<div>
+			<div id="form-left_field" class="left field_text">
+				<div class="label_and_box">
+				    <%= f.label :rpg, raw("Strategy &amp; role-play games") %>
+					<div class="right primary">
+					    <%= f.check_box :rpg %>
+					</div>
+				</div>
+			</div><%= image_tag "l-div_form_arrows_on.png", :width => 33, :height => 24, :alt => "Arrows", :class => "left" %>
+			<div id="form-right_field" class="left field_text">
+				<div class="label_and_box">
+					<div class="left secondary">
+					    <%= f.check_box :rpg2, :href => "response_rpg" %>
+						<%= f.label :rpg2, raw("I have 12 different avatars") %>
+					</div>    
+				</div>
+			</div>
+		</div>
+		<div>
+			<div id="form-left_field" class="left field_text">
+				<div class="label_and_box">
+				    <%= f.label :shooters, raw("Graphics-heavy games") %>
+					<div class="right primary">
+					    <%= f.check_box :shooters %>
+					</div>
+				</div>
+			</div><%= image_tag "l-div_form_arrows_on.png", :width => 33, :height => 24, :alt => "Arrows", :class => "left" %>
+			<div id="form-right_field" class="left field_text">
+				<div class="label_and_box">
+					<div class="left secondary">
+					    <%= f.check_box :shooters2, :href => "response_shooters" %>
+						<%= f.label :shooters2, raw("The more realistic the better") %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><%= image_tag "l-div_divider_lines.png", :width => 466, :height => 19 %>
+	<div id="form-container" name="video">
+		<div class="left">
+			<%= image_tag "l-div_form_therm_0-6.gif", :width => 9, :height => 91, :alt => "Thermometer", :class => "therm" %>
+		</div>
+		<%= image_tag "l-div_form_title_portablity.gif", :width => 191, :height => 19, :alt => "Portability" %>
+		<div>
+			<div id="form-left_field" class="left field_text">
+				<div class="label_and_box">
+				    <%= f.label :desk_work, raw("Desk work") %>
+					<div class="right primary">
+					    <%= f.check_box :desk_work %>
+					</div>
+				</div>
+			</div><%= image_tag "l-div_form_arrows_on.png", :width => 33, :height => 24, :alt => "Arrows", :class => "left" %>
+			<div id="form-right_field" class="left field_text">
+				<div class="label_and_box">
+					<div class="left secondary">
+					    <%= f.check_box :desk_work2, :href => "response_desk_work" %>
+						<%= f.label :desk_work2, raw("I never leave my desk") %>
+					</div>    
+				</div>
+			</div>
+		</div>
+		<div>
+			<div id="form-left_field" class="left field_text">
+				<div class="label_and_box">
+				    <%= f.label :planes_trains, raw("Planes, trains &amp; automobiles") %>
+					<div class="right primary">
+					    <%= f.check_box :planes_trains %>
+					</div>
+				</div>
+			</div><%= image_tag "l-div_form_arrows_on.png", :width => 33, :height => 24, :alt => "Arrows", :class => "left" %>
+			<div id="form-right_field" class="left field_text">
+				<div class="label_and_box">
+					<div class="left secondary">
+					    <%= f.check_box :planes_trains2, :href => "response_planes_trains" %>
+					    <%= f.label :planes_trains2, raw("I travel everywhere with my laptop") %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div id="form-left_field" class="left field_text">
+				<div class="label_and_box">
+				    <%= f.label :coffee_shops, raw("Coffee shops &amp; parks") %>
+					<div class="right primary">
+					    <%= f.check_box :coffee_shops %>
+					</div>
+				</div>
+			</div><%= image_tag "l-div_form_arrows_on.png", :width => 33, :height => 24, :alt => "Arrows", :class => "left" %>
+			<div id="form-right_field" class="left field_text">
+				<div class="label_and_box">
+					<div class="left secondary">
+					    <%= f.check_box :coffee_shops2, :href => "response_coffee_shops" %>
+					    <%= f.label :coffee_shops2, raw("Starbucks is my second home") %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><%= image_tag "l-div_divider_lines.png", :width => 466, :height => 19 %>
+	<div id="form-container" name="video">
+		<div class="left">
+			<%= image_tag "l-div_form_therm_0-6.gif", :width => 9, :height => 91, :alt => "Thermometer", :class => "therm" %>
+		</div>
+		<%= image_tag "l-div_form_title_productivity.gif", :width => 191, :height => 19, :alt => "Productivity" %>
+		<div>
+			<div id="form-left_field" class="left field_text">
+				<div class="label_and_box">
+				    <%= f.label :docs, raw("Docs, spreadsheets & ppts") %>
+					<div class="right primary">
+						<%= f.check_box :docs %>
+					</div>
+				</div>
+			</div><%= image_tag "l-div_form_arrows_on.png", :width => 33, :height => 24, :alt => "Arrows", :class => "left" %>
+			<div id="form-right_field" class="left field_text">
+				<div class="label_and_box">
+					<div class="left secondary">
+					    <%= f.check_box :docs2, :href => "response_docs" %>
+					    <%= f.label :docs2, raw("My Excel runs math simulations") %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div id="form-left_field" class="left field_text">
+				<div class="label_and_box">
+				    <%= f.label :blogging, raw("Blogging &amp; tweeting") %>
+					<div class="right primary">
+					    <%= f.check_box :blogging %>
+					</div>
+				</div>
+			</div><%= image_tag "l-div_form_arrows_on.png", :width => 33, :height => 24, :alt => "Arrows", :class => "left" %>
+			<div id="form-right_field" class="left field_text">
+				<div class="label_and_box">
+					<div class="left secondary">
+					    <%= f.check_box :blogging2, :href => "response_blogging" %>
+					    <%= f.label :blogging2, raw("I have a blog for each of my hobbies") %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div id="form-left_field" class="left field_text">
+				<div class="label_and_box">
+				    <%= f.label :architecture, raw("Architecture &amp; CAD") %>
+					<div class="right primary">
+					    <%= f.check_box :architecture %>
+					</div>
+				</div>
+			</div><%= image_tag "l-div_form_arrows_on.png", :width => 33, :height => 24, :alt => "Arrows", :class => "left" %>
+			<div id="form-right_field" class="left field_text">
+				<div class="label_and_box">
+					<div class="left secondary">
+					    <%= f.check_box :architecture2, :href => "response_architecture" %>
+					    <%= f.label :architecture2, raw("Fly-throughs and renders galore") %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><br>
 </div>
 <% end %>
 <script type="text/javascript" charset="utf-8">
 	function onchange() {
-		$("#results").html("Loading...");
+		$("#r-div").html("Loading...");
 		$.ajax("/responses/ajax_create", {
 			data: $('form').serialize(),
 			type: "POST",
 			success: function (data) {
-				$("#results").html(data);
+				$("#r-div").html(data);
 			}
 		})
 	}
