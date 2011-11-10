@@ -60,6 +60,24 @@
   <%= @response.shooters %>
 </p>
 
+<table>
+	<tr>
+		<% [:final_score, :name, :speed, :memory, :graphics, :hard, :hdd_speed, :optical, :price, :screen].each do |attribute| %>
+			<th>
+				<%= attribute %>
+			</th>
+		<% end %>
+	</tr>
+	<% Item.rank_all(@response).each do |item| %>
+		<tr>
+		<% [:final_score, :name, :speed, :memory, :graphics, :hard, :hdd_speed, :optical, :price, :screen].each do |attribute| %>
+			<td>
+				<%= item.send(attribute) %>
+			</td>
+		<% end %>
+		</tr>
+	<% end %>
+</table>
 
 <%= link_to 'Edit', edit_response_path(@response) %> |
 <%= link_to 'Back', responses_path %>

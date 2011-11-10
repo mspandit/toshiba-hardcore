@@ -102,157 +102,86 @@ class Item < ActiveRecord::Base
     end
   end
   
-  def self.rank_all(params)
+  def self.rank_all(response)
     weights = { 
-      :speed => params[:watch].to_f         +
-                params[:watch2].to_f        +
-                params[:edit_movies].to_f   + 
-                params[:edit_movies2].to_f  + 
-                params[:edit_photos].to_f   + 
-                params[:edit_photos2].to_f  + 
-                params[:stream].to_f        +
-                params[:stream2].to_f       +
-                params[:rpg].to_f           +
-                params[:rpg2].to_f          + 
-                params[:shooter].to_f       + 
-                params[:shooter2].to_f      +
-                params[:desk_work].to_f     +
-                params[:desk_work2].to_f    +
-                params[:blogging].to_f      +
-                params[:blogging2].to_f     +
-                params[:architecture].to_f  +
-                params[:architecture2].to_f,
-                
-      :memory =>params[:online].to_f        +
-                params[:online2].to_f       +
-                params[:edit_movies].to_f   + 
-                params[:edit_movies2].to_f  + 
-                params[:edit_photos].to_f   +
-                params[:edit_photos2].to_f  +
-                params[:digital].to_f       +
-                params[:digital2].to_f      +
-                params[:record].to_f        + 
-                params[:record2].to_f       + 
-                params[:rpg].to_f           +
-                params[:rpg2].to_f          + 
-                params[:shooter].to_f       +
-                params[:shooter2].to_f      +
-                params[:desk_work].to_f     +
-                params[:desk_work2].to_f    +
-                params[:blogging].to_f      +
-                params[:blogging2].to_f     +
-                params[:architecture].to_f  +
-                params[:architecture2].to_f,
-                
-      :graphics =>  params[:watch].to_f     +
-                params[:watch2].to_f        +
-                params[:edit_movies].to_f   +
-                params[:edit_movies2].to_f  +
-                params[:edit_photos].to_f   +
-                params[:edit_photos2].to_f  +
-                params[:rpg].to_f           +
-                params[:rpg2].to_f          + 
-                params[:shooter].to_f       +
-                params[:shooter2].to_f      +
-                params[:blogging].to_f      +
-                params[:blogging2].to_f,
+      :speed => response.watch.to_f         +
+                response.edit_movies.to_f   + 
+                response.edit_photos.to_f   + 
+                response.stream.to_f        +
+                response.rpg.to_f           +
+                response.shooters.to_f       + 
+                response.desk_work.to_f     +
+                response.blogging.to_f      +
+                response.architecture.to_f,
                                 
-      :hard =>  params[:watch].to_f         +
-                params[:watch2].to_f        +
-                params[:edit_movies].to_f   +
-                params[:edit_movies2].to_f  +
-                params[:download].to_f      +
-                params[:download2].to_f     +
-                params[:print].to_f         +
-                params[:print2].to_f        +
-                params[:edit_photos].to_f   +
-                params[:edit_photos2].to_f  +
-                params[:digital].to_f       +
-                params[:digital2].to_f      +
-                params[:record].to_f        +
-                params[:record2].to_f       +
-                params[:rpg].to_f           +
-                params[:rpg2].to_f          +
-                params[:desk_work].to_f     +
-                params[:desk_work2].to_f    +
-                params[:planes_trains].to_f +
-                params[:planes_trains2].to_f +
-                params[:docs].to_f          +
-                params[:docs2].to_f         +
-                params[:blogging].to_f      +
-                params[:blogging2].to_f     +
-                params[:architecture].to_f  +
-                params[:architecture2].to_f,
+      :memory =>response.online.to_f        +
+                response.edit_movies.to_f   + 
+                response.edit_photos.to_f   +
+                response.digital.to_f       +
+                response.record.to_f        + 
+                response.rpg.to_f           +
+                response.shooters.to_f       +
+                response.desk_work.to_f     +
+                response.blogging.to_f      +
+                response.architecture.to_f,
                 
-      :hdd_speed => params[:watch].to_f         +
-                params[:watch2].to_f        +
-                params[:edit_movies].to_f   +
-                params[:edit_movies2].to_f  +
-                params[:edit_photos].to_f   +
-                params[:edit_photos2].to_f  +
-                params[:digital].to_f       +
-                params[:digital2].to_f      +
-                params[:rpg].to_f           +
-                params[:rpg2].to_f          +
-                params[:shooter].to_f       +
-                params[:shooter2].to_f      +
-                params[:blogging].to_f      +
-                params[:blogging2].to_f     +
-                params[:architecture].to_f  +
-                params[:architecture2].to_f,
+      :graphics =>  response.watch.to_f     +
+                response.edit_movies.to_f   +
+                response.edit_photos.to_f   +
+                response.rpg.to_f           +
+                response.shooters.to_f       +
+                response.blogging.to_f,
+                                
+      :hard =>  response.watch.to_f         +
+                response.edit_movies.to_f   +
+                response.download.to_f      +
+                response.print.to_f         +
+                response.edit_photos.to_f   +
+                response.digital.to_f       +
+                response.record.to_f        +
+                response.rpg.to_f           +
+                response.desk_work.to_f     +
+                response.planes_trains.to_f +
+                response.docs.to_f          +
+                response.blogging.to_f      +
+                response.architecture.to_f,
+
+      :hdd_speed => response.watch.to_f         +
+                response.edit_movies.to_f   +
+                response.edit_photos.to_f   +
+                response.digital.to_f       +
+                response.rpg.to_f           +
+                response.shooters.to_f       +
+                response.blogging.to_f      +
+                response.architecture.to_f,
                 
-      :optical=>params[:watch].to_f         +
-                params[:watch2].to_f        +
-                params[:edit_movies].to_f   +
-                params[:edit_movies2].to_f  +
-                params[:shooter].to_f       +
-                params[:shooter2].to_f      +
-                params[:planes_trains].to_f +
-                params[:planes_trains2].to_f +
-                params[:docs].to_f          +
-                params[:docs2].to_f         +
-                params[:blogging].to_f      +
-                params[:blogging2].to_f,
+      :optical=>response.watch.to_f         +
+                response.edit_movies.to_f   +
+                response.shooters.to_f       +
+                response.planes_trains.to_f +
+                response.docs.to_f          +
+                response.blogging.to_f,
                 
-      :price => params[:online].to_f        +
-                params[:online2].to_f       +
-                params[:download].to_f      +
-                params[:download2].to_f     +
-                params[:print].to_f         +
-                params[:print2].to_f        +
-                params[:stream].to_f        +
-                params[:stream2].to_f       +
-                params[:scrabble].to_f      +
-                params[:scrabble2].to_f     +
-                params[:planes_trains].to_f +
-                params[:planes_trains2].to_f +
-                params[:coffee_shops].to_f  +
-                params[:coffee_shops2].to_f +
-                params[:docs].to_f          +
-                params[:docs2].to_f,
+      :price => response.online.to_f        +
+                response.download.to_f      +
+                response.print.to_f         +
+                response.stream.to_f        +
+                response.scrabble.to_f      +
+                response.planes_trains.to_f +
+                response.coffee_shops.to_f  +
+                response.docs.to_f,
       
-      :screen => params[:watch].to_f        +
-                params[:watch2].to_f        +
-                params[:edit_movies].to_f   +
-                params[:edit_movies2].to_f  +
-                params[:edit_photos].to_f   +
-                params[:edit_photos2].to_f  +
-                params[:rpg].to_f           +
-                params[:rpg2].to_f          +
-                params[:shooter].to_f       +
-                params[:shooter2].to_f      +
-                params[:docs].to_f          +
-                params[:docs2].to_f         - 
-                params[:planes_trains].to_f -
-                params[:planes_trains2].to_f -
-                params[:coffee_shops].to_f  -
-                params[:coffee_shops2].to_f +
-                params[:blogging].to_f      +
-                params[:blogging2].to_f
+      :screen => response.watch.to_f        +
+                response.edit_movies.to_f   +
+                response.edit_photos.to_f   +
+                response.rpg.to_f           +
+                response.shooters.to_f       +
+                response.docs.to_f          +
+                response.planes_trains.to_f -
+                response.coffee_shops.to_f  -
+                response.blogging.to_f
     }
-    
-    
-    puts "weights:", weights.inspect
+
     all.map do |item|
       item.final_score =  weights[:speed]   * item.speed    +
                           weights[:memory]  * item.memory   + 
