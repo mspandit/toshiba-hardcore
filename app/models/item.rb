@@ -7,20 +7,23 @@ class Item < ActiveRecord::Base
     "Blu-ray Disc&#153; Rewriteable (RE) and DVD SuperMulti drive with Labelflash&reg;"
   ]
   
+  # TODO Atom and Pentium processors should get zero
   PROC_NUMBER_RANKING = [
     "T3500",
     "N455",
     "N550",
+    "B940",
+    "B950"
     "i3-2310M",
     "i3-370M",
     "i3-380M",
-    "B940",
     "i5-2410M",
     "i5-2520M",
     "i7-2620M", # 2.7GHz
     "i7-2630QM" # 2.9GHz
   ]
   
+  # TODO Non-discrete should all be zero
   GRAPHICS_MEMORY_RANKING = [
     "-250MB",
     "-1274MB",
@@ -266,7 +269,9 @@ class Item < ActiveRecord::Base
   def self.rank
     prices    = Item.order("import_price DESC").map(&:import_price).uniq
     memories  = Item.order("import_memory ASC").map { |i| i.import_memory.split("|").last }.uniq
+    # TODO Hard drive size should be 0.0 - 0.5
     hards     = Item.order("import_hard ASC").map { |i| i.import_hard.split("|").last }.uniq
+    # TODO Rank by large screen size and also by small screen size
     screens   = Item.order("screen ASC").map(&:import_screen).uniq
     all.each do |item|
       item.update_attributes({
