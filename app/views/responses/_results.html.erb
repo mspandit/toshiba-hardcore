@@ -1,12 +1,83 @@
-<div class="suggested">
-	<h1>Suggested Option</h1>
-	<p><%= @recommended.name %></p>
-	<p><%= link_to(image_tag(@recommended.image_url, :width => 200), @recommended.product_url) %></p>
-	<p><%= @recommended.description %></p>
+<div id="feed_left">
+  <img src="/assets/feed_fl_title.gif" width="251" height="48" alt="Suggested Option:">
+  <div id="feed_img_box_l">
+    <%= image_tag(@recommended.image_url, width: 251) %>
+  </div>
+  <div id="feed_content">
+    <span class="prod_name"><%= @recommended.name %></span><br>
+    <br>
+    <ul>
+      <li class="first"><%= @recommended.import_proc_type.html_safe %></li>
+      <li>Genuine Windows&reg; 7</li>
+      <li><%= @recommended.import_memory %> memory</li>
+      <li><%= @recommended.import_hard %> hard drive</li>
+    </ul>
+    <br>
+    <% if @recommended.name.downcase.index("customizable") %>
+      </span> <span class="prod_bto">This product will be custom built for you.<br>
+      Average build time for customized orders is 1-2 weeks.</span><br>
+      <br>
+    <% end %>
+    <div id="badge_img">
+      <img src="/assets/feed_badge_corei3.gif" width="68" height="47">
+    </div>
+    <div id="price_box">
+      <div id="prices_l" class="price_blk">
+        List Price:<br>
+        Instant Savings:<br>
+        <span class="price_red">Starting at:</span>
+      </div>
+      <div id="prices_r" class="price_blk">
+        $<%= format("%0.2f", @recommended.import_price) %><br>
+        -$250.00<br>
+        <span class="price_red">$489.00</span>
+      </div>
+    </div><br clear="all">
+    <div id="learn_more">
+      <img src="/assets/feed_learn_more.gif" width="95" height="25">
+    </div>
+  </div>
 </div>
-<div class="hardcore">
-	<h1>Hardcore Upgrade</h1>
-	<p><%= @hardcore.name %></p>
-	<p><%= link_to(image_tag(@hardcore.image_url, :width => 250), @hardcore.product_url) %></p>
-	<p><%= @hardcore.description %></p>
+<div id="feed_divider">
+  <img src="/assets/feed_mid_divider.gif" width="3" height="553">
+</div>
+<div id="feed_right">
+  <img src="/assets/feed_fr_title.gif" width="248" height="48">
+  <div id="feed_img_box_r">
+    <%= image_tag(@hardcore.image_url, width: 248) %>
+  </div>
+  <div id="feed_content">
+    <span class="prod_name"><%= @hardcore.name %></span><br>
+    <br>
+    <ul>
+      <li class="first"><%= @hardcore.import_proc_type.html_safe %></li>
+      <li>Genuine Windows&reg; 7</li>
+      <li><%= @hardcore.import_memory %> memory</li>
+      <li><%= @hardcore.import_hard %> hard drive</li>
+    </ul>
+    <br>
+    <% if @hardcore.name.downcase.index("customizable") %>
+      </span> <span class="prod_bto">This product will be custom built for you.<br>
+      Average build time for customized orders is 1-2 weeks.</span><br>
+      <br>
+    <% end %>
+    <div id="badge_img">
+      <img src="/assets/feed_badge_corei3.gif" width="68" height="47">
+    </div>
+    <div id="price_box">
+      <div id="prices_l" class="price_blk">
+        List Price:<br>
+        Instant Savings:<br>
+        <span class="price_red">Starting at:</span>
+      </div>
+      <div id="prices_r" class="price_blk">
+        $<%= format("%0.2f", @hardcore.import_price) %><br>
+        -$250.00<br>
+        <span class="price_red">$489.00</span>
+      </div>
+    </div><br clear="all">
+    <div id="learn_more">
+      <img src="/assets/feed_learn_more.gif" width="95" height="25">
+    </div>
+  </div>
 </div>

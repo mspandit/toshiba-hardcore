@@ -13,7 +13,7 @@ class Item < ActiveRecord::Base
     "N455",
     "N550",
     "B940",
-    "B950"
+    "B950",
     "i3-2310M",
     "i3-370M",
     "i3-380M",
@@ -39,7 +39,8 @@ class Item < ActiveRecord::Base
     description: 2,
     product_url: 3,
     image_url: 26,
-    import_price: 10,
+    import_price: 9,
+    import_sale_price: 10,
     import_proc_type: 13,
     import_proc_speed: 14,
     import_proc_number: 15,

@@ -166,3 +166,117 @@ body {
 .suggested, .hardcore {
 	background: white;
 }
+
+/* for Feed DIV */
+
+#r-div {
+	width:554px;
+	float:left;
+	min-height: 841px;
+	background-color:#FFF;
+}
+	
+#feed_left {
+	width:251px;
+	float:left;
+	margin:0 13px 0 13px;
+	
+}
+
+#feed_right {
+	width:248px;
+	float:left;
+	margin:0 12px 0 13px;
+}
+
+#feed_divider {
+	width:3px;
+	float:left;
+	margin:0;
+}
+
+#feed_img_box_l {
+	width:251px;
+	height:215px;
+	overflow:hidden;
+}
+
+#feed_img_box_r {
+	width:248px;
+	height:215px;
+	overflow:hidden;
+}
+
+#feed_content {	
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+		margin:0 0 0 10px;
+}
+
+.prod_name {
+	font-size:16px;
+	color:#0064af;
+}
+
+.prod_bullet {
+	font-size:12px;
+	color:#5c5c5c;
+	line-height:15px;
+}
+
+.lead_bullet {
+	color:#0064af;
+}
+
+.prod_bto {
+	color:#7da649;
+	font-size:9px;
+}
+
+#badge_img {
+	float:left
+}
+
+#price_box {
+	background-color:#eee;
+	border:1px solid #d3d3d3;
+	width:152px;
+	height:47px;
+	padding:4px 8px 0 8px;
+	float:right;
+}
+
+#prices_l {
+	float:left;
+}
+
+#prices_r {
+	float:right;
+}
+
+.price_blk {
+	color:#000;
+	font-size:9px;
+	line-height:14px;
+}
+
+.price_red {
+	color:#e50000;
+	font-size:13px;
+	line-height:15px;
+}
+
+#learn_more {
+	margin:15px 0 0 0;
+	float:right;
+}
+
+#r-div ul {
+	font-size: 12px;
+	color: #5C5C5C;
+	line-height: 15px;
+	list-style-type: disc;
+	padding-left: 1.5em;
+	li.first {
+		color: #0064AF;
+	}
+}
