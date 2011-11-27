@@ -217,24 +217,45 @@ class Item < ActiveRecord::Base
     end
   end
   
-  def self.import(file)
+  def self.process_line(line)
+    columns = line.split("\t")
+    if ("Toshiba" == columns[5] && "Notebook PCs" == columns[6] && "New" == columns[11] && columns[13].index("AMD").nil?)
+      hash = {}
+      MAP.each_pair do |key, value| 
+        if 26 == value
+          # grab the original image url if alt is blank
+          hash[key] = columns[value].blank? ? columns[4] : "http://www.toshibadirect.com/#{columns[value].split(',').first}"
+        else
+          hash[key] = columns[value]
+        end
+      end
+      # puts "hash:", hash.inspect
+      Item.create(hash)
+      return true
+    else
+      return false
+    end
+  end
+  
+  def self.import(server, user, password, file)
+    require 'net/ftp'
+    
+    num_lines = 0
+    Net::FTP.open(server) do |ftp|
+      ftp.login(user, password)
+      ftp.gettextfile(file) do |line|
+        puts line
+        num_lines = num_lines + 1 if process_line(line)
+      end
+    end
+    self.rank
+    num_lines
+  end
+  
+  def self.upload(file)
     num_lines = 0
     file.read.split("\n").each do |line|
-      columns = line.split("\t")
-      if ("Toshiba" == columns[5] && "Notebook PCs" == columns[6] && "New" == columns[11] && columns[13].index("AMD").nil?)
-        hash = {}
-        MAP.each_pair do |key, value| 
-          if 26 == value
-            # grab the original image url if alt is blank
-            hash[key] = columns[value].blank? ? columns[4] : "http://www.toshibadirect.com/#{columns[value].split(',').first}"
-          else
-            hash[key] = columns[value]
-          end
-        end
-        # puts "hash:", hash.inspect
-        Item.create(hash)
-        num_lines += 1
-      end
+      num_lines = num_lines + 1 if process_line(line)
     end
     self.rank
     num_lines

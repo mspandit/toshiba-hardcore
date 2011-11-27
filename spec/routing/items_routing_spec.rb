@@ -30,6 +30,10 @@ describe ItemsController do
     it "routes to #destroy" do
       delete("/items/1").should route_to("items#destroy", :id => "1")
     end
+    
+    it "routes to #import" do
+      get("/items/import").should route_to('items#import')
+    end
 
   end
 end

@@ -53,12 +53,22 @@ class ItemsController < ApplicationController
     end
   end
   
-  # POST /items/import
-  def import
-    num_imports = Item.import(params[:file])
-    
+  # POST /items/upload
+  def upload
+    num_imports = Item.upload(params[:file])
+    Item.where("created_at < ?", DateTime.now - 23.hours).delete_all    
     respond_to do |format|
       format.html { redirect_to :items, notice: "#{num_imports} items were successfully imported." }
+    end
+  end
+  
+  # GET /items/import
+  def import
+    num_imports = Item.import(params[:ftp], params[:user], params[:password], params[:file])
+    Item.where("created_at < ?", DateTime.now - 23.hours).delete_all    
+    
+    respond_to do |format|
+      format.html { redirect_to :items, notice: "#{num_imports} items were successfully imported."}
     end
   end
 
