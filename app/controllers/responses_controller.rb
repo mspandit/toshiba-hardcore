@@ -1,11 +1,12 @@
 class ResponsesController < ApplicationController
+  
   # GET /responses
   # GET /responses.json
   def index
     @responses = Response.order("created_at DESC")
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render layout: false } # index.html.erb
       format.json { render json: @responses }
     end
   end
@@ -16,7 +17,7 @@ class ResponsesController < ApplicationController
     @response = Response.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render layout: false } # show.html.erb
       format.json { render json: @response }
     end
   end
