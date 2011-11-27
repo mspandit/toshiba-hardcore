@@ -7,7 +7,6 @@ class Item < ActiveRecord::Base
     "Blu-ray Disc&#153; Rewriteable (RE) and DVD SuperMulti drive with Labelflash&reg;"
   ]
   
-  # TODO Atom and Pentium processors should get zero
   PROC_NUMBER_RANGE = [
     "T3500",
     "N455",
@@ -23,7 +22,6 @@ class Item < ActiveRecord::Base
     "i7-2630QM" # 2.9GHz
   ]
   
-  # TODO Non-discrete should all be zero
   GRAPHICS_MEMORY_RANGE = [
     "-250MB",
     "-1274MB",
@@ -220,7 +218,6 @@ class Item < ActiveRecord::Base
   end
   
   def self.large_hdd_range
-    # TODO Hard drive size should be 0.0 - 0.5
     all.map do |item|
       maximum_in_string(item.import_hard)
     end.uniq.sort
@@ -289,9 +286,9 @@ class Item < ActiveRecord::Base
     
     num_lines = 0
     Net::FTP.open(server) do |ftp|
+      ftp.passive = true
       ftp.login(user, password)
       ftp.gettextfile(file) do |line|
-        puts line
         num_lines = num_lines + 1 if process_line(line)
       end
     end
