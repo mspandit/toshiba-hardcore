@@ -18,8 +18,8 @@ class AddResponses < ActiveRecord::Migration
     remove_column :items, :screen
     remove_column :items, :hdd_speed
     remove_column :items, :graphics
-    remove_column :items, :import_hdd_speed, :string
-    remove_column :items, :import_screen, :string
+    remove_column :items, :import_hdd_speed
+    remove_column :items, :import_screen
     
     remove_column :responses, :architecture
     remove_column :responses, :blogging

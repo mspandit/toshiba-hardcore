@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20111028212054) do
     t.string   "product_url"
     t.string   "image_url"
     t.float    "import_price"
+    t.float    "import_sale_price"
     t.string   "import_proc_type"
     t.string   "import_proc_speed"
     t.string   "import_proc_number"

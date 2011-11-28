@@ -28,7 +28,15 @@
       <br>
     <% end %>
     <div id="badge_img">
-      <img src="/assets/feed_badge_corei3.gif" width="68" height="47">
+      <% if @recommended.import_proc_type.index("i7") %>
+        <%= image_tag("feed_badge_corei7.gif", width: 68, height: 47) %>
+      <% elsif @recommended.import_proc_type.index("i5") %>
+        <%= image_tag("feed_badge_corei5.gif", width: 68, height: 47) %>
+      <% elsif @recommended.import_proc_type.index("i3") %>
+        <%= image_tag("feed_badge_corei3.gif", width: 68, height: 47) %>
+      <% elsif @recommended.import_proc_type.index("entium") %>
+        <%= image_tag("feed_badge_pentium.gif", width: 68, height: 47) %>
+      <% end %>
     </div>
     <div id="price_box">
       <div id="prices_l" class="price_blk">
@@ -38,12 +46,12 @@
       </div>
       <div id="prices_r" class="price_blk">
         $<%= format("%0.2f", @recommended.import_price) %><br>
-        -$250.00<br>
-        <span class="price_red">$489.00</span>
+        -$<%= format("%0.2f", @recommended.import_price - @recommended.import_sale_price) %><br>
+        <span class="price_red">$<%= format("%0.2f", @recommended.import_sale_price) %></span>
       </div>
     </div><br clear="all">
     <div id="learn_more">
-      <img src="/assets/feed_learn_more.gif" width="95" height="25">
+      <%= link_to(image_tag("feed_learn_more.gif", width: 95, height: 25), @recommended.product_url, :target => "_blank") %>
     </div>
   </div>
 </div>
@@ -71,7 +79,15 @@
       <br>
     <% end %>
     <div id="badge_img">
-      <img src="/assets/feed_badge_corei3.gif" width="68" height="47">
+      <% if @hardcore.import_proc_type.index("i7") %>
+        <%= image_tag("feed_badge_corei7.gif", width: 68, height: 47) %>
+      <% elsif @hardcore.import_proc_type.index("i5") %>
+        <%= image_tag("feed_badge_corei5.gif", width: 68, height: 47) %>
+      <% elsif @hardcore.import_proc_type.index("i3") %>
+        <%= image_tag("feed_badge_corei3.gif", width: 68, height: 47) %>
+      <% elsif @hardcore.import_proc_type.index("entium") %>
+        <%= image_tag("feed_badge_pentium.gif", width: 68, height: 47) %>
+      <% end %>
     </div>
     <div id="price_box">
       <div id="prices_l" class="price_blk">
@@ -81,12 +97,12 @@
       </div>
       <div id="prices_r" class="price_blk">
         $<%= format("%0.2f", @hardcore.import_price) %><br>
-        -$250.00<br>
-        <span class="price_red">$489.00</span>
+        -$<%= format("%0.2f", @hardcore.import_price - @hardcore.import_sale_price) %><br>
+        <span class="price_red">$<%= format("%0.2f", @hardcore.import_sale_price) %></span>
       </div>
     </div><br clear="all">
     <div id="learn_more">
-      <img src="/assets/feed_learn_more.gif" width="95" height="25">
+      <%= link_to(image_tag("feed_learn_more.gif", width: 95, height: 25), @hardcore.product_url, :target => "_blank") %>
     </div>
   </div>
 </div>

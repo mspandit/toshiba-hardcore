@@ -2,28 +2,28 @@
 
 <table>
   <tr>
+    <th>Import proc number</th>
     <th>Speed</th>
+    <th>Import price</th>
     <th>Price</th>
+    <th>Import memory</th>
     <th>Memory</th>
+    <th>Import hard</th>
     <th>Hard</th>
+    <th>Import optical</th>
     <th>Optical</th>
+    <th>Import graphics</th>
     <th>Graphics</th>
+    <th>Import HDD speed</th>
     <th>HDD speed</th>
+    <th>Import screen</th>
     <th>Screen</th>
     <th>Name</th>
     <th>Description</th>
     <th>Product url</th>
-    <th>Image</th>
-    <th>Import price</th>
-    <th>Import proc type</th>
     <th>Import proc speed</th>
-    <th>Import proc number</th>
-    <th>Import memory</th>
-    <th>Import graphics</th>
-    <th>Import hard</th>
-    <th>Import optical</th>
-    <th>Import screen</th>
-    <th>Import HDD speed</th>
+    <th>Image</th>
+    <th>Import proc type</th>
     <th></th>
     <th></th>
     <th></th>
@@ -31,28 +31,28 @@
 
 <% @items.each do |item| %>
   <tr>
+    <td><%= item.import_proc_number %></td>
     <td><%= item.speed %></td>
+    <td><%= item.import_price %></td>
     <td><%= item.price %></td>
+    <td><%= item.import_memory %></td>
     <td><%= item.memory %></td>
+    <td><%= item.import_hard %></td>
     <td><%= item.hard %></td>
+    <td><%= item.import_optical %></td>
     <td><%= item.optical %></td>
+    <td><%= item.import_graphics %></td>
     <td><%= item.graphics %></td>
+    <td><%= item.import_hdd_speed %></td>
     <td><%= item.hdd_speed %></td>
+    <td><%= item.import_screen %></td>
     <td><%= item.screen %></td>
     <td><%= item.name %></td>
     <td><%= item.description %></td>
     <td><%= item.product_url %></td>
-    <td><%= image_tag(item.image_url, :width => 100) unless item.image_url.blank? %></td>
-    <td><%= item.import_price %></td>
-    <td><%= item.import_proc_type %></td>
     <td><%= item.import_proc_speed %></td>
-    <td><%= item.import_proc_number %></td>
-    <td><%= item.import_memory %></td>
-    <td><%= item.import_graphics %></td>
-    <td><%= item.import_hard %></td>
-    <td><%= item.import_optical %></td>
-    <td><%= item.import_screen %></td>
-    <td><%= item.import_hdd_speed %></td>
+    <td><%= image_tag(item.image_url, :width => 100) unless item.image_url.blank? %></td>
+    <td><%= item.import_proc_type %></td>
     <td><%= link_to 'Show', item %></td>
     <td><%= link_to 'Edit', edit_item_path(item) %></td>
     <td><%= link_to 'Destroy', item, confirm: 'Are you sure?', method: :delete %></td>
