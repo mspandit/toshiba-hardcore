@@ -11,9 +11,11 @@ class Item < ActiveRecord::Base
     "T3500",
     "N455",
     "N550",
+    "B800",
     "B940",
     "B950",
     "i3-2310M",
+    "i3-2330M",
     "i3-370M",
     "i3-380M",
     "i5-2410M",
@@ -52,7 +54,7 @@ class Item < ActiveRecord::Base
   }
   
   def rank_speed
-    index = PROC_NUMBER_RANGE.index(Item.maximum_in_string(import_proc_number))
+    index = Item.maximum_in_string(import_proc_number, PROC_NUMBER_RANGE)
     if index
       (index + 1).to_f / PROC_NUMBER_RANGE.count
     else
@@ -65,19 +67,17 @@ class Item < ActiveRecord::Base
   end
   
   def rank_memory(memories)
-    (memories.index(Item.maximum_in_string(import_memory)) + 1).to_f / memories.count
+    (Item.maximum_in_string(import_memory, memories) + 1).to_f / memories.count
   end
   
   def rank_hard(hards)
-    (hards.index(Item.maximum_in_string(import_hard)) + 1).to_f / hards.count
+    (Item.maximum_in_string(import_hard, hards) + 1).to_f / hards.count
   end
   
   def rank_optical
-    # TODO pick maximum, not last
-    index = OPTICAL_RANGE.index(import_optical.split("|").last)
+    index = Item.maximum_in_string(import_optical, OPTICAL_RANGE)
     if index
-      # TODO pick maximum, not last
-      (OPTICAL_RANGE.index(import_optical.split("|").last) + 1).to_f / OPTICAL_RANGE.count
+      (index + 1).to_f / OPTICAL_RANGE.count
     else
       0.5
     end
@@ -94,7 +94,7 @@ class Item < ActiveRecord::Base
   
   def rank_hdd_speed(speeds)
     return 0.5 if import_hdd_speed.nil?
-    index = speeds.index(Item.maximum_in_string(import_hdd_speed))
+    index = Item.maximum_in_string(import_hdd_speed, speeds)
     if index
       (index + 1).to_f / speeds.count
     else
@@ -203,8 +203,15 @@ class Item < ActiveRecord::Base
     end.sort { |i1, i2| i2.final_score <=> i1.final_score }
   end
   
-  def self.maximum_in_string(string)
-    string.split("|").sort.last if string
+  def self.maximum_in_string(string, range = nil)
+    if range
+      domain = string.split("|")
+      domain.map { |str| range.index(str) }.compact.max
+    elsif string
+      string.split("|").sort.last
+    else
+      nil
+    end
   end
   
   def self.high_price_range
