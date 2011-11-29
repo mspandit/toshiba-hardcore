@@ -50,13 +50,18 @@ class ResponsesController < ApplicationController
   def ajax_create
     @response = Response.new(params[:response])
     
-    # puts "response -> #{@response.inspect}"
-    
     if @response.empty?
       render :partial => "results_default"
     else
-      @hardcore = Item.rank_all(@response)[0]
-      @recommended = Item.rank_all(@response)[1]
+      top, almost = Item.rank_all(@response).slice(0, 2)
+      if (top.import_price.to_f < almost.import_price.to_f)
+        @hardcore = almost
+        @recommended = top
+      else
+        @hardcore = top
+        @recommended = almost
+      end
+
       @response.save
       render :partial => "results"
     end

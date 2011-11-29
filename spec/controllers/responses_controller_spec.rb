@@ -26,6 +26,11 @@ describe ResponsesController do
   def valid_attributes
     {}
   end
+  
+  before :each do
+    Item.create!(speed: 0.5, memory: 0.5, graphics: 0.5, hard: 0.5, hdd_speed: 0.5, optical: 0.5, price: 0.5, screen: 0.5)
+    Item.create!(speed: 0.25, memory: 0.25, graphics: 0.25, hard: 0.25, hdd_speed: 0.25, optical: 0.25, price: 0.25, screen: 0.25)
+  end
 
   describe "GET index" do
     it "assigns all responses as @responses" do
