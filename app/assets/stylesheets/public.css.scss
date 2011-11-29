@@ -51,15 +51,15 @@ table {
 /* Structure */
 
 #container {
-	margin:auto;
-	margin-top:20px;
-	width:1024px;
-	min-height:841px;
-	background-image:url(/assets/center_bg.gif);
+	margin: auto;
+	margin-top: 20px;
+	width: 1024px;
+	height: 841px;
+	overflow: hidden;
+	background-image: url(/assets/center_bg.gif);
 	-moz-box-shadow: 5px 5px 10px #1d1d1d;
 	-webkit-box-shadow: 5px 5px 10px #1d1d1d;
 	box-shadow: 5px 5px 10px #1d1d1d;
-	
 }
 
 #l-div {
@@ -214,6 +214,10 @@ body {
 .prod_name {
 	font-size:16px;
 	color:#0064af;
+	a {
+		color:#0064af;
+		text-decoration: none;
+	}
 }
 
 .prod_bullet {

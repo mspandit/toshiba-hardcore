@@ -10,10 +10,10 @@
 <div id="feed_left">
   <img src="/assets/feed_fl_title.gif" width="251" height="48" alt="Suggested Option:">
   <div id="feed_img_box_l">
-    <%= image_tag(@recommended.image_url, width: 251) %>
+    <%= link_to(image_tag(@recommended.image_url, width: 251), @recommended.product_url, :target => "_blank") %>
   </div>
   <div id="feed_content">
-    <span class="prod_name"><%= @recommended.name %></span><br>
+    <span class="prod_name"><%= link_to(@recommended.name, @recommended.product_url, :target => "_blank") %></span><br>
     <br>
     <ul>
       <li class="first"><%= @recommended.import_proc_type.html_safe %></li>
@@ -61,10 +61,10 @@
 <div id="feed_right">
   <img src="/assets/feed_fr_title.gif" width="248" height="48">
   <div id="feed_img_box_r">
-    <%= image_tag(@hardcore.image_url, width: 248) %>
+    <%= link_to(image_tag(@hardcore.image_url, width: 248), @hardcore.product_url, :target => "_blank") %>
   </div>
   <div id="feed_content">
-    <span class="prod_name"><%= @hardcore.name %></span><br>
+    <span class="prod_name"><%= link_to(@hardcore.name, @hardcore.product_url, :target => "_blank") %></span><br>
     <br>
     <ul>
       <li class="first"><%= @hardcore.import_proc_type.html_safe %></li>
