@@ -254,14 +254,14 @@ class Item < ActiveRecord::Base
     screens = large_screen_range
     all.each do |item|
       item.update_attributes({
-        :speed => item.rank_speed,
-        :price => item.rank_price(prices),
-        :memory => item.rank_memory(memories),
-        :hard => item.rank_hard(hards),
-        :optical => item.rank_optical,
-        :graphics => item.rank_graphics,
-        :hdd_speed => item.rank_hdd_speed(hdd_speeds),
-        :screen => item.rank_screen(screens)
+        :speed => Math::sqrt(item.rank_speed),
+        :price => Math::sqrt(item.rank_price(prices)),
+        :memory => Math::sqrt(item.rank_memory(memories)),
+        :hard => Math::sqrt(item.rank_hard(hards)),
+        :optical => Math::sqrt(item.rank_optical),
+        :graphics => Math::sqrt(item.rank_graphics),
+        :hdd_speed => Math::sqrt(item.rank_hdd_speed(hdd_speeds)),
+        :screen => Math::sqrt(item.rank_screen(screens))
         # :large_screen => item.rank_screen(large_screen_range)
         # :small_screen => item.rank_screen(small_screen_range)
       })
