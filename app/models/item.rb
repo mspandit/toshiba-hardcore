@@ -111,96 +111,11 @@ class Item < ActiveRecord::Base
   end
   
   def self.rank_all(response)
-    weights = { 
-      :speed => response.watch.to_f         +
-                response.edit_movies.to_f   + 
-                response.edit_photos.to_f   + 
-                response.stream.to_f        +
-                response.rpg.to_f           +
-                response.shooters.to_f       + 
-                response.desk_work.to_f     +
-                response.blogging.to_f      +
-                response.architecture.to_f,
-                                
-      :memory =>response.online.to_f        +
-                response.edit_movies.to_f   + 
-                response.edit_photos.to_f   +
-                response.digital.to_f       +
-                response.record.to_f        + 
-                response.rpg.to_f           +
-                response.shooters.to_f       +
-                response.desk_work.to_f     +
-                response.blogging.to_f      +
-                response.architecture.to_f,
-                
-      :graphics =>  response.watch.to_f     +
-                response.edit_movies.to_f   +
-                response.edit_photos.to_f   +
-                response.rpg.to_f           +
-                response.shooters.to_f       +
-                response.blogging.to_f,
-                                
-      :hard =>  response.watch.to_f         +
-                response.edit_movies.to_f   +
-                response.download.to_f      +
-                response.print.to_f         +
-                response.edit_photos.to_f   +
-                response.digital.to_f       +
-                response.record.to_f        +
-                response.rpg.to_f           +
-                response.desk_work.to_f     +
-                response.planes_trains.to_f +
-                response.docs.to_f          +
-                response.blogging.to_f      +
-                response.architecture.to_f,
-
-      :hdd_speed => response.watch.to_f         +
-                response.edit_movies.to_f   +
-                response.edit_photos.to_f   +
-                response.digital.to_f       +
-                response.rpg.to_f           +
-                response.shooters.to_f       +
-                response.blogging.to_f      +
-                response.architecture.to_f,
-                
-      :optical=>response.watch.to_f         +
-                response.edit_movies.to_f   +
-                response.shooters.to_f       +
-                response.planes_trains.to_f +
-                response.docs.to_f          +
-                response.blogging.to_f,
-                
-      :price => -(response.online.to_f        +
-                response.download.to_f      +
-                response.print.to_f         +
-                response.stream.to_f        +
-                response.scrabble.to_f      +
-                response.planes_trains.to_f +
-                response.coffee_shops.to_f  +
-                response.docs.to_f),
-      
-      :screen => response.watch.to_f        +
-                response.edit_movies.to_f   +
-                response.edit_photos.to_f   +
-                response.rpg.to_f           +
-                response.shooters.to_f       +
-                response.docs.to_f          -
-                response.planes_trains.to_f -
-                response.coffee_shops.to_f  +
-                response.blogging.to_f
-    }
-
-    all.map do |item|
-      item.final_score =  weights[:speed]   * item.speed    +
-                          weights[:memory]  * item.memory   + 
-                          weights[:graphics] * item.graphics +
-                          weights[:hard]    * item.hard     + 
-                          weights[:hdd_speed] * item.hdd_speed +
-                          weights[:optical] * item.optical  + 
-                          weights[:price]   * item.price +
-                          weights[:screen] * item.screen
-      item
-    end.sort { |i1, i2| i2.final_score <=> i1.final_score }
+    # Sort all items by price
+    the_items = order("import_price ASC")
+    primary_segment = the_items.slice(response.primary_segment_start(the_items), response.primary_segment_size(the_items))
+    secondary_segment = primary_segment.slice(response.secondary_segment_start(primary_segment), response.secondary_segment_size(primary_segment))
+    secondary_segment.slice(0, 2)
   end
   
   def self.maximum_in_string(string, range = nil)

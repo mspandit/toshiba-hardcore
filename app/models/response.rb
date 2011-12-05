@@ -1,4 +1,53 @@
 class Response < ActiveRecord::Base
+  PRIMARY_SEGMENTS = {
+    :online => 0.0 / 3.0,
+    :watch => 1.0 / 3.0,
+    :edit_movies => 2.0 / 3.0,
+    
+    :download => 0.0 / 3.0,
+    :print => 1.0 / 3.0,
+    :edit_photos => 2.0 / 3.0,
+    
+    :stream => 0.0 / 3.0,
+    :digital => 1.0 / 3.0,
+    :record => 2.0 / 3.0,
+    
+    :scrabble => 0.0 / 3.0,
+    :rpg => 1.0 / 3.0,
+    :shooters => 2.0 / 3.0,
+    
+    :desk_work => 2.0 / 3.0,
+    :planes_trains => 0.0 / 3.0,
+    :coffee_shops => 1.0 / 3.0,
+    
+    :docs => 1.0 / 3.0,
+    :blogging => 0.0 / 3.0,
+    :architecture =>  2.0 / 3.0
+  }
+  
+  def hardcore_portion
+    [
+      :online, 
+      :watch, 
+      :edit_movies, 
+      :download, 
+      :print, 
+      :edit_photos, 
+      :stream, 
+      :digital, 
+      :record, 
+      :scrabble, 
+      :rpg, 
+      :shooters, 
+      :desk_work, 
+      :planes_trains, 
+      :coffee_shops, 
+      :docs, 
+      :blogging, 
+      :architecture2
+    ].inject(0) { |current, object| current + (send(object).to_i > 1 ? 1 : 0) } / 18.0
+  end
+  
   def empty?
     [
       :online, 
@@ -164,5 +213,27 @@ class Response < ActiveRecord::Base
   
   def architecture2 
     0 
+  end
+  
+  def maximum_primary
+    PRIMARY_SEGMENTS.keys.map do |key|
+      self.send(key).to_f > 0.0 ? PRIMARY_SEGMENTS[key] : 0
+    end.max
+  end
+  
+  def primary_segment_start(items)
+    (items.count * maximum_primary).to_i
+  end
+  
+  def primary_segment_size(items)
+    items.count - (primary_segment_start(items))
+  end
+  
+  def secondary_segment_start(items)
+    ((items.count - 1) * hardcore_portion).to_i
+  end
+  
+  def secondary_segment_size(items)
+    2
   end
 end
