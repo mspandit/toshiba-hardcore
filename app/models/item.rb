@@ -112,8 +112,14 @@ class Item < ActiveRecord::Base
   
   def self.rank_all(response)
     # Sort all items by price
-    the_items = order("import_price ASC")
-    primary_segment = the_items.slice(response.primary_segment_start(the_items), response.primary_segment_size(the_items))
+    @the_items ||= order("import_price ASC").sort do |x1, x2| 
+      if x1.import_price == x2.import_price
+        x1.rank_speed <=> x2.rank_speed
+      else 
+        x1.import_price <=> x2.import_price
+      end
+    end
+    primary_segment = @the_items.slice(response.primary_segment_start(@the_items), response.primary_segment_size(@the_items))
     secondary_segment = primary_segment.slice(response.secondary_segment_start(primary_segment), response.secondary_segment_size(primary_segment))
     secondary_segment.slice(0, 2)
   end

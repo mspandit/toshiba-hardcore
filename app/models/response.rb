@@ -25,7 +25,7 @@ class Response < ActiveRecord::Base
     :architecture =>  2.0 / 3.0
   }
   
-  def hardcore_portion
+  def total_portion
     [
       :online, 
       :watch, 
@@ -45,7 +45,7 @@ class Response < ActiveRecord::Base
       :docs, 
       :blogging, 
       :architecture2
-    ].inject(0) { |current, object| current + (send(object).to_i > 1 ? 1 : 0) } / 18.0
+    ].inject(0) { |current, object| current + send(object).to_i } / 54.0
   end
   
   def empty?
@@ -230,7 +230,7 @@ class Response < ActiveRecord::Base
   end
   
   def secondary_segment_start(items)
-    ((items.count - 1) * hardcore_portion).to_i
+    ((items.count - 1) * total_portion).to_i
   end
   
   def secondary_segment_size(items)
