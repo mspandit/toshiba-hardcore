@@ -125,7 +125,7 @@ class Item < ActiveRecord::Base
   end
   
   def self.maximum_in_string(string, range = nil)
-    if range
+    if string && range
       domain = string.split("|")
       domain.map { |str| range.index(str) }.compact.max
     elsif string
