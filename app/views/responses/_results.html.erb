@@ -1,4 +1,8 @@
 <div id="tr-div">
+  <script type="text/javascript" charset="utf-8">
+    _gaq.push(['_trackEvent', '#{@recommended.product_url}', 'present']);
+    _gaq.push(['_trackEvent', '#{@hardcore.product_url}', 'present']);
+  </script>
 	<div id="addthis">
 		<!-- AddThis Button BEGIN -->
 		<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;pubid=xa-4eb982c663cb55b5"><%= image_tag "lg-share-en.gif", :width => 109, :height => 14, :alt => "Bookmark and Share", :style => "border: 0;" %></a> <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4eb982c663cb55b5">
@@ -10,10 +14,10 @@
 <div id="feed_left">
   <img src="/assets/feed_fl_title.gif" width="251" height="48" alt="Suggested Option:">
   <div id="feed_img_box_l">
-    <%= link_to(image_tag(@recommended.image_url, width: 251), @recommended.product_url, :target => "_blank") %>
+    <%= link_to(image_tag(@recommended.image_url, width: 251), @recommended.product_url, :target => "_blank", onclick: "_gaq.push(['_trackEvent', '#{@recommended.product_url}', 'ToshibaDirect Clickthrough']);") %>
   </div>
   <div id="feed_content">
-    <span class="prod_name"><%= link_to(@recommended.name, @recommended.product_url, :target => "_blank") %></span><br>
+    <span class="prod_name"><%= link_to(@recommended.name, @recommended.product_url, :target => "_blank", onclick: "_gaq.push(['_trackEvent', '#{@recommended.product_url}', 'ToshibaDirect Clickthrough']);") %></span><br>
     <br>
     <ul>
       <li class="first"><%= @recommended.import_proc_type.html_safe %></li>
@@ -61,10 +65,10 @@
 <div id="feed_right">
   <img src="/assets/feed_fr_title.gif" width="248" height="48">
   <div id="feed_img_box_r">
-    <%= link_to(image_tag(@hardcore.image_url, width: 248), @hardcore.product_url, :target => "_blank") %>
+    <%= link_to(image_tag(@hardcore.image_url, width: 248), @hardcore.product_url, :target => "_blank", onclick: "_gaq.push(['_trackEvent', '#{@hardcore.product_url}', 'ToshibaDirect Clickthrough']);") %>
   </div>
   <div id="feed_content">
-    <span class="prod_name"><%= link_to(@hardcore.name, @hardcore.product_url, :target => "_blank") %></span><br>
+    <span class="prod_name"><%= link_to(@hardcore.name, @hardcore.product_url, :target => "_blank", onclick: "_gaq.push(['_trackEvent', '#{@hardcore.product_url}', 'ToshibaDirect Clickthrough']);") %></span><br>
     <br>
     <ul>
       <li class="first"><%= @hardcore.import_proc_type.html_safe %></li>
