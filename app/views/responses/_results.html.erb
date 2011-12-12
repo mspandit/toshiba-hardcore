@@ -40,6 +40,8 @@
         <%= image_tag("feed_badge_corei3.gif", width: 68, height: 47) %>
       <% elsif @recommended.import_proc_type.index("entium") %>
         <%= image_tag("feed_badge_pentium.gif", width: 68, height: 47) %>
+      <% elsif @recommended.import_proc_type.index("eleron") %>
+        <%= image_tag("feed_badge_celeron.gif", width: 68, height: 47)%>
       <% end %>
     </div>
     <div id="price_box">
@@ -91,6 +93,8 @@
         <%= image_tag("feed_badge_corei3.gif", width: 68, height: 47) %>
       <% elsif @hardcore.import_proc_type.index("entium") %>
         <%= image_tag("feed_badge_pentium.gif", width: 68, height: 47) %>
+      <% elsif @hardcore.import_proc_type.index("eleron") %>
+        <%= image_tag("feed_badge_celeron.gif", width: 68, height: 47)%>
       <% end %>
     </div>
     <div id="price_box">
