@@ -22,7 +22,8 @@ describe "responses/_results.html.erb" do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(/onclick/)
-    rendered.should match(/present/)
+    rendered.should match(/Recommended Result/)
+    rendered.should match(/Hardcore Result/)
     rendered.should match(/http:\/\/one/)
     rendered.should match(/http:\/\/two/)
   end

@@ -402,7 +402,7 @@
 
 	$('.secondary input[type=checkbox]').bind('change', function () {
 		if ($(this).attr("checked") == "checked") {
-		  _gaq.push(['_trackEvent', $(this).attr("href"), 'Hardcore Selection']);
+		  _gaq.push(['_trackEvent', 'Hardcore Selection', $(this).attr("href")]);
 		}
 	});
 
