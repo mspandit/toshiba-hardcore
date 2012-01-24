@@ -71,6 +71,10 @@ class Response < ActiveRecord::Base
     ].inject(true) { |current, field| current && (send(field) == 0) }
   end
   
+  def special?
+    [:watch, :edit_movies, :record, :rpg, :shooters, :architecture, :coffee_shops].inject(false) { |current, field| current || send(field) > 0 }
+  end
+  
   def online2=(value)
     self.online += value.to_i
   end

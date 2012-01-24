@@ -110,18 +110,56 @@ class Item < ActiveRecord::Base
     end
   end
   
-  def self.rank_all(response)
-    # Sort all items by price
-    @the_items ||= order("import_price ASC").sort do |x1, x2| 
-      if x1.import_price == x2.import_price
-        x1.rank_speed <=> x2.rank_speed
+  def self.sort_by(field, then_field)
+    order("#{field.to_s} ASC").sort do |x1, x2| 
+      if x1.send(field) == x2.send(field)
+        x1.send(then_field) <=> x2.send(then_field)
       else 
-        x1.import_price <=> x2.import_price
+        x1.send(field) <=> x2.send(field)
       end
     end
-    primary_segment = @the_items.slice(response.primary_segment_start(@the_items), response.primary_segment_size(@the_items))
-    secondary_segment = primary_segment.slice(response.secondary_segment_start(primary_segment), response.secondary_segment_size(primary_segment))
-    secondary_segment.slice(0, 2)
+  end
+  
+  def self.c_series(response)
+    primary_segment = @the_items.select { |item| item.name =~ /C[1-9][0-9][0-9]/ }
+    primary_segment[response.secondary_segment_start(primary_segment)]
+  end
+  
+  def self.z_series(response)
+    primary_segment = @the_items.select { |item| item.name =~ /Z[1-9][0-9][0-9]/ }
+    primary_segment[response.secondary_segment_start(primary_segment)]
+  end
+  
+  def self.l_series(response)
+    primary_segment = @the_items.select { |item| item.name =~ /L[1-9][0-9][0-9]/ }
+    primary_segment[response.secondary_segment_start(primary_segment)]
+  end
+  
+  def self.x_f_series(response)
+    primary_segment = @the_items.select { |item| item.name =~ /X[1-9][0-9][0-9]/ || item.name =~ /F[1-9][0-9][0-9]/ }
+    primary_segment[response.secondary_segment_start(primary_segment)]
+  end
+  
+  def self.p_series(response)
+    primary_segment = @the_items.select { |item| item.name =~ /P[1-9][0-9][0-9]/ }
+    primary_segment[response.secondary_segment_start(primary_segment)]
+  end
+  
+  def self.rank_all(response)
+    @the_items ||= sort_by(:import_price, :rank_speed) # Sort all items by price
+    if response.special?
+      if response.edit_movies > 0 || response.record > 0 || response.rpg > 0 || response.shooters > 0 || response.architecture > 0
+        [p_series(response), x_f_series(response)]
+      elsif response.watch > 0
+        [l_series(response), x_f_series(response)]
+      elsif response.coffee_shops > 0
+        [c_series(response), z_series(response)]
+      end
+    else
+      primary_segment = @the_items.slice(response.primary_segment_start(@the_items), response.primary_segment_size(@the_items))
+      secondary_segment = primary_segment.slice(response.secondary_segment_start(primary_segment), response.secondary_segment_size(primary_segment))
+      secondary_segment.slice(0, 2)
+    end
   end
   
   def self.maximum_in_string(string, range = nil)

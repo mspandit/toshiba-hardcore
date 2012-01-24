@@ -62,7 +62,7 @@ class ResponsesController < ApplicationController
         @recommended = almost
       end
 
-      @response.save
+      # @response.save
       render :partial => "results"
     end
   end
