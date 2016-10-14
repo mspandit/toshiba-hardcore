@@ -54,6 +54,7 @@ class ItemsController < ApplicationController
   end
   
   # POST /items/upload
+  # $curl -F "file=@/Users/mspandit/Documents/toshiba-hardcore/Toshiba_Hardcore.txt" http://localhost:300
   def upload
     num_imports = Item.upload(params[:file])
     Item.where("created_at < ?", DateTime.now - 23.hours).delete_all    
